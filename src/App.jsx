@@ -36,7 +36,9 @@ function useLocalState(key, fallback) {
     }
   });
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value));
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch {}
   }, [key, value]);
   return [value, setValue];
 }
@@ -70,6 +72,7 @@ const BOOK_ALIASES = {
   romans: "rom",
   rom: "rom",
   james: "jas",
+  jas: "jas",
   "1 john": "1 john",
   "i john": "1 john",
   "2 john": "2 john",
@@ -383,12 +386,7 @@ function PageHome({ state, setState }) {
         title="Territory & Links"
         right={
           <div className="flex gap-2">
-            <a
-              className="px-3 py-2 rounded-xl border"
-              href="https://www.jw.org"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a className="px-3 py-2 rounded-xl border" href="https://www.jw.org" target="_blank" rel="noreferrer">
               jw.org ↗
             </a>
             <a
@@ -493,23 +491,16 @@ function PageHome({ state, setState }) {
               .slice(-6)
               .reverse()
               .map((l) => (
-                <div
-                  key={l.id}
-                  className="rounded-xl border p-3 border-neutral-200 dark:border-neutral-800"
-                >
+                <div key={l.id} className="rounded-xl border p-3 border-neutral-200 dark:border-neutral-800">
                   <div className="flex items-center justify-between">
                     <div>
                       {l.date} — <b>{l.hours}h</b> — {l.category || "—"} {l.notes ? " — " + l.notes : ""}
                     </div>
-                    <Button className="text-xs" onClick={() => setEdit(l)}>
-                      Edit
-                    </Button>
+                    <Button className="text-xs" onClick={() => setEdit(l)}>Edit</Button>
                   </div>
                   <div className="text-xs opacity-60">
                     🕒 {prettyTime(l.createdAt)}
-                    {l.updatedAt && l.updatedAt !== l.createdAt
-                      ? ` • updated ${prettyTime(l.updatedAt)}`
-                      : ""}
+                    {l.updatedAt && l.updatedAt !== l.createdAt ? ` • updated ${prettyTime(l.updatedAt)}` : ""}
                   </div>
                 </div>
               ))}
@@ -520,27 +511,14 @@ function PageHome({ state, setState }) {
       <Modal open={!!edit} onClose={() => setEdit(null)} title="Edit Hours">
         {edit && (
           <div className="space-y-2">
-            <Input
-              type="date"
-              value={edit.date}
-              onChange={(e) => setEdit({ ...edit, date: e.target.value })}
-            />
-            <Input
-              type="number"
-              step="0.25"
-              value={edit.hours}
-              onChange={(e) => setEdit({ ...edit, hours: Number(e.target.value) })}
-            />
+            <Input type="date" value={edit.date} onChange={(e) => setEdit({ ...edit, date: e.target.value })} />
+            <Input type="number" step="0.25" value={edit.hours} onChange={(e) => setEdit({ ...edit, hours: Number(e.target.value) })} />
             <Select
               value={edit.category || "Other"}
               onChange={(v) => setEdit({ ...edit, category: v })}
               options={["Door-to-door", "Bible study", "Informal", "Letter writing", "Cart", "Other"]}
             />
-            <Input
-              value={edit.notes || ""}
-              onChange={(e) => setEdit({ ...edit, notes: e.target.value })}
-              placeholder="Notes"
-            />
+            <Input value={edit.notes || ""} onChange={(e) => setEdit({ ...edit, notes: e.target.value })} placeholder="Notes" />
             <div className="flex gap-2">
               <Button
                 className="bg-blue-600 text-white"
@@ -590,17 +568,14 @@ function PageTerritory({ state, setState }) {
       const households = [...s.households];
       const hid = editing.householdId;
       if (households[hid]) {
-        const newAddr = (editing.__address ?? households[hid].address || "").trim();
+        // ✅ FIXED: disambiguated ?? with || and added ?. for safety
+        const newAddr = ((editing.__address ?? households[hid]?.address) || "").trim();
         if (newAddr) {
           const dupAt = households.findIndex(
             (h, i) => i !== hid && ((h.address || "").trim().toLowerCase() === newAddr.toLowerCase())
           );
           if (dupAt !== -1) {
-            if (
-              !window.confirm(
-                `Another household already uses “${newAddr}”. Keep both with the same address?`
-              )
-            ) {
+            if (!window.confirm(`Another household already uses “${newAddr}”. Keep both with the same address?`)) {
               return s;
             }
           }
@@ -616,31 +591,15 @@ function PageTerritory({ state, setState }) {
     <div>
       <Section title="Log a Door">
         <div className="grid md:grid-cols-2 gap-3">
-          <Input
-            placeholder="Address (e.g., 1410 Amherst)"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-          <Input
-            placeholder="Person’s name"
-            value={personName}
-            onChange={(e) => setPersonName(e.target.value)}
-          />
+          <Input placeholder="Address (e.g., 1410 Amherst)" value={address} onChange={(e) => setAddress(e.target.value)} />
+          <Input placeholder="Person’s name" value={personName} onChange={(e) => setPersonName(e.target.value)} />
           <Select
             options={["NH", "RV", "NI", "DNC", "Vacant", "Empty", "No Trespassing"]}
             value={status}
             onChange={setStatus}
           />
-          <Input
-            placeholder="Scripture shared"
-            value={scripture}
-            onChange={(e) => setScripture(e.target.value)}
-          />
-          <Input
-            placeholder="Literature left (Invitation, Tract, Watchtower, ELF)"
-            value={literature}
-            onChange={(e) => setLiterature(e.target.value)}
-          />
+          <Input placeholder="Scripture shared" value={scripture} onChange={(e) => setScripture(e.target.value)} />
+          <Input placeholder="Literature left (Invitation, Tract, Watchtower, ELF)" value={literature} onChange={(e) => setLiterature(e.target.value)} />
           <TextArea placeholder="Notes…" value={notes} onChange={(e) => setNotes(e.target.value)} />
         </div>
         <div className="mt-3 flex gap-2">
@@ -648,24 +607,12 @@ function PageTerritory({ state, setState }) {
             className="bg-blue-600 text-white"
             onClick={() => {
               addDoorLog({ address, status, scripture, literature, notes, personName }, state, setState);
-              setAddress("");
-              setPersonName("");
-              setScripture("");
-              setLiterature("");
-              setNotes("");
+              setAddress(""); setPersonName(""); setScripture(""); setLiterature(""); setNotes("");
             }}
           >
             Save Entry
           </Button>
-          <Button
-            onClick={() => {
-              setAddress("");
-              setPersonName("");
-              setScripture("");
-              setLiterature("");
-              setNotes("");
-            }}
-          >
+          <Button onClick={() => { setAddress(""); setPersonName(""); setScripture(""); setLiterature(""); setNotes(""); }}>
             Clear
           </Button>
         </div>
@@ -676,36 +623,26 @@ function PageTerritory({ state, setState }) {
         right={
           <div className="flex items-center gap-2">
             <label className="text-sm flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={nhOnly}
-                onChange={(e) => setNhOnly(e.target.checked)}
-              />{" "}
-              NH only
+              <input type="checkbox" checked={nhOnly} onChange={(e) => setNhOnly(e.target.checked)} /> NH only
             </label>
             <Button onClick={exportNH}>Copy List</Button>
           </div>
         }
       >
         <div className="text-sm opacity-75">
-          Copies a bullet list of today’s doors (default: everything except RV). Share with the
-          territory holder.
+          Copies a bullet list of today’s doors (default: everything except RV). Share with the territory holder.
         </div>
       </Section>
 
       <Section title="Recent Activity">
         <div className="space-y-2">
           {recent.map((v) => (
-            <div
-              key={v.id}
-              className="rounded-xl border p-3 border-neutral-200 dark:border-neutral-800"
-            >
+            <div key={v.id} className="rounded-xl border p-3 border-neutral-200 dark:border-neutral-800">
               <div className="text-sm opacity-70">
                 {v.date} • {prettyTime(v.createdAt)}
               </div>
               <div className="font-medium">
-                {(state.households[v.householdId] && state.households[v.householdId].address) ||
-                  "(unknown)"}{" "}
+                {(state.households[v.householdId] && state.households[v.householdId].address) || "(unknown)"}{" "}
                 — <span className="px-2 py-0.5 rounded-full text-xs border">{v.status}</span>
               </div>
               {v.personName && <div className="text-sm">👤 {v.personName}</div>}
@@ -717,9 +654,7 @@ function PageTerritory({ state, setState }) {
                 </div>
               )}
               <div className="mt-2">
-                <Button className="text-xs" onClick={() => setEditing(v)}>
-                  Edit
-                </Button>
+                <Button className="text-xs" onClick={() => setEditing(v)}>Edit</Button>
               </div>
             </div>
           ))}
@@ -738,35 +673,13 @@ function PageTerritory({ state, setState }) {
               }
               onChange={(e) => setEditing({ ...editing, __address: e.target.value })}
             />
-            <Input
-              placeholder="Person name"
-              value={editing.personName || ""}
-              onChange={(e) => setEditing({ ...editing, personName: e.target.value })}
-            />
-            <Select
-              options={["NH", "RV", "NI", "DNC", "Vacant", "Empty", "No Trespassing"]}
-              value={editing.status}
-              onChange={(v) => setEditing({ ...editing, status: v })}
-            />
-            <Input
-              placeholder="Scripture"
-              value={editing.scripture || ""}
-              onChange={(e) => setEditing({ ...editing, scripture: e.target.value })}
-            />
-            <Input
-              placeholder="Literature"
-              value={editing.literature || ""}
-              onChange={(e) => setEditing({ ...editing, literature: e.target.value })}
-            />
-            <TextArea
-              placeholder="Notes"
-              value={editing.notes || ""}
-              onChange={(e) => setEditing({ ...editing, notes: e.target.value })}
-            />
+            <Input placeholder="Person name" value={editing.personName || ""} onChange={(e) => setEditing({ ...editing, personName: e.target.value })} />
+            <Select options={["NH", "RV", "NI", "DNC", "Vacant", "Empty", "No Trespassing"]} value={editing.status} onChange={(v) => setEditing({ ...editing, status: v })} />
+            <Input placeholder="Scripture" value={editing.scripture || ""} onChange={(e) => setEditing({ ...editing, scripture: e.target.value })} />
+            <Input placeholder="Literature" value={editing.literature || ""} onChange={(e) => setEditing({ ...editing, literature: e.target.value })} />
+            <TextArea placeholder="Notes" value={editing.notes || ""} onChange={(e) => setEditing({ ...editing, notes: e.target.value })} />
             <div className="flex gap-2">
-              <Button className="bg-blue-600 text-white" onClick={saveEdit}>
-                Save
-              </Button>
+              <Button className="bg-blue-600 text-white" onClick={saveEdit}>Save</Button>
               <Button onClick={() => setEditing(null)}>Cancel</Button>
             </div>
           </div>
@@ -823,46 +736,18 @@ function PageReturnVisits({ state, setState }) {
     <div>
       <Section title="Add Return Visit" right={<Button className="bg-blue-600 text-white" onClick={save}>Save</Button>}>
         <div className="grid md:grid-cols-2 gap-3">
-          <Input
-            placeholder="Name"
-            value={form.personName}
-            onChange={(e) => setForm((f) => ({ ...f, personName: e.target.value }))}
-          />
-          <Input
-            placeholder="Address"
-            value={form.address}
-            onChange={(e) => setForm((f) => ({ ...f, address: e.target.value }))}
-          />
-          <Input
-            placeholder="Scripture shared last time"
-            value={form.lastScripture}
-            onChange={(e) => setForm((f) => ({ ...f, lastScripture: e.target.value }))}
-          />
+          <Input placeholder="Name" value={form.personName} onChange={(e) => setForm((f) => ({ ...f, personName: e.target.value }))} />
+          <Input placeholder="Address" value={form.address} onChange={(e) => setForm((f) => ({ ...f, address: e.target.value }))} />
+          <Input placeholder="Scripture shared last time" value={form.lastScripture} onChange={(e) => setForm((f) => ({ ...f, lastScripture: e.target.value }))} />
           <div className="grid grid-cols-3 gap-2">
             <div className="col-span-2">
-              <Input
-                placeholder="Next scripture"
-                value={form.nextScripture}
-                onChange={(e) => setForm((f) => ({ ...f, nextScripture: e.target.value }))}
-              />
+              <Input placeholder="Next scripture" value={form.nextScripture} onChange={(e) => setForm((f) => ({ ...f, nextScripture: e.target.value }))} />
             </div>
             <Button onClick={() => setSuggestFor({ kind: "form", data: form })}>Suggest</Button>
           </div>
-          <Input
-            type="date"
-            value={form.nextVisit}
-            onChange={(e) => setForm((f) => ({ ...f, nextVisit: e.target.value }))}
-          />
-          <Input
-            placeholder="Best time (e.g., Weekend mornings)"
-            value={form.bestTime}
-            onChange={(e) => setForm((f) => ({ ...f, bestTime: e.target.value }))}
-          />
-          <TextArea
-            placeholder="Notes"
-            value={form.notes}
-            onChange={(e) => setForm((f) => ({ ...f, notes: e.target.value }))}
-          />
+          <Input type="date" value={form.nextVisit} onChange={(e) => setForm((f) => ({ ...f, nextVisit: e.target.value }))} />
+          <Input placeholder="Best time (e.g., Weekend mornings)" value={form.bestTime} onChange={(e) => setForm((f) => ({ ...f, bestTime: e.target.value }))} />
+          <TextArea placeholder="Notes" value={form.notes} onChange={(e) => setForm((f) => ({ ...f, notes: e.target.value }))} />
         </div>
       </Section>
 
@@ -878,23 +763,17 @@ function PageReturnVisits({ state, setState }) {
                   <Button className="text-xs" onClick={() => setSuggestFor({ kind: "rv", data: rv })}>
                     Suggest next scripture
                   </Button>
-                  <Button className="text-xs" onClick={() => setEditing(rv)}>
-                    Edit
-                  </Button>
+                  <Button className="text-xs" onClick={() => setEditing(rv)}>Edit</Button>
                 </div>
               </div>
               <div className="text-sm mt-1 grid sm:grid-cols-3 gap-2">
-                <div>
-                  Next: <span className="font-medium">{rv.nextVisit || "—"}</span>
-                </div>
+                <div>Next: <span className="font-medium">{rv.nextVisit || "—"}</span></div>
                 <div>Last 📖 {rv.lastScripture || "—"}</div>
                 <div>Next 📖 {rv.nextScripture || "(tap Suggest)"}</div>
               </div>
               <div className="text-xs opacity-60 mt-1">
                 🕒 saved {prettyTime(rv.createdAt)}
-                {rv.updatedAt && rv.updatedAt !== rv.createdAt
-                  ? ` • updated ${prettyTime(rv.updatedAt)}`
-                  : ""}
+                {rv.updatedAt && rv.updatedAt !== rv.createdAt ? ` • updated ${prettyTime(rv.updatedAt)}` : ""}
               </div>
               {rv.bestTime && <div className="text-sm opacity-80 mt-1">Best time: {rv.bestTime}</div>}
               {rv.notes && <div className="text-sm opacity-80 mt-1">Notes: {rv.notes}</div>}
@@ -906,41 +785,13 @@ function PageReturnVisits({ state, setState }) {
       <Modal open={!!editing} onClose={() => setEditing(null)} title="Edit Return Visit">
         {editing && (
           <div className="space-y-2">
-            <Input
-              placeholder="Name"
-              value={editing.personName}
-              onChange={(e) => setEditing({ ...editing, personName: e.target.value })}
-            />
-            <Input
-              placeholder="Address"
-              value={editing.address}
-              onChange={(e) => setEditing({ ...editing, address: e.target.value })}
-            />
-            <Input
-              placeholder="Last scripture"
-              value={editing.lastScripture || ""}
-              onChange={(e) => setEditing({ ...editing, lastScripture: e.target.value })}
-            />
-            <Input
-              placeholder="Next scripture"
-              value={editing.nextScripture || ""}
-              onChange={(e) => setEditing({ ...editing, nextScripture: e.target.value })}
-            />
-            <Input
-              type="date"
-              value={editing.nextVisit}
-              onChange={(e) => setEditing({ ...editing, nextVisit: e.target.value })}
-            />
-            <Input
-              placeholder="Best time"
-              value={editing.bestTime || ""}
-              onChange={(e) => setEditing({ ...editing, bestTime: e.target.value })}
-            />
-            <TextArea
-              placeholder="Notes"
-              value={editing.notes || ""}
-              onChange={(e) => setEditing({ ...editing, notes: e.target.value })}
-            />
+            <Input placeholder="Name" value={editing.personName} onChange={(e) => setEditing({ ...editing, personName: e.target.value })} />
+            <Input placeholder="Address" value={editing.address} onChange={(e) => setEditing({ ...editing, address: e.target.value })} />
+            <Input placeholder="Last scripture" value={editing.lastScripture || ""} onChange={(e) => setEditing({ ...editing, lastScripture: e.target.value })} />
+            <Input placeholder="Next scripture" value={editing.nextScripture || ""} onChange={(e) => setEditing({ ...editing, nextScripture: e.target.value })} />
+            <Input type="date" value={editing.nextVisit} onChange={(e) => setEditing({ ...editing, nextVisit: e.target.value })} />
+            <Input placeholder="Best time" value={editing.bestTime || ""} onChange={(e) => setEditing({ ...editing, bestTime: e.target.value })} />
+            <TextArea placeholder="Notes" value={editing.notes || ""} onChange={(e) => setEditing({ ...editing, notes: e.target.value })} />
             <div className="flex gap-2">
               <Button
                 className="bg-blue-600 text-white"
@@ -962,15 +813,11 @@ function PageReturnVisits({ state, setState }) {
         )}
       </Modal>
 
-      <Modal
-        open={!!suggestFor}
-        onClose={() => setSuggestFor(null)}
-        title="Suggested next scriptures"
-      >
+      <Modal open={!!suggestFor} onClose={() => setSuggestFor(null)} title="Suggested next scriptures">
         {suggestFor && (
           <div className="space-y-2">
             {(() => {
-              const rv = suggestFor.kind === "rv" ? suggestFor.data : suggestFor.data;
+              const rv = suggestFor.data;
               const list = suggestions(rv);
               if (list.length === 0) {
                 return (
@@ -983,10 +830,7 @@ function PageReturnVisits({ state, setState }) {
               return (
                 <ul className="space-y-2">
                   {list.map((s, i) => (
-                    <li
-                      key={i}
-                      className="border rounded-xl p-3 border-neutral-200 dark:border-neutral-800 flex items-center justify-between"
-                    >
+                    <li key={i} className="border rounded-xl p-3 border-neutral-200 dark:border-neutral-800 flex items-center justify-between">
                       <div>
                         <div className="font-medium">{s.ref}</div>
                         <div className="text-sm opacity-80">{s.why}</div>
@@ -1067,13 +911,7 @@ function PageStudies({ state, setState }) {
           <Input placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
           <div>
             <div className="text-xs mb-1 opacity-70">Lesson number</div>
-            <Input
-              type="number"
-              min={1}
-              max={60}
-              value={lesson}
-              onChange={(e) => setLesson(e.target.value)}
-            />
+            <Input type="number" min={1} max={60} value={lesson} onChange={(e) => setLesson(e.target.value)} />
           </div>
           <div>
             <div className="text-xs mb-1 opacity-70">Next visit date</div>
@@ -1091,9 +929,7 @@ function PageStudies({ state, setState }) {
                 <div className="font-semibold">{s.name}</div>
                 <div className="flex gap-2">
                   <div className="text-sm opacity-75">Lesson {s.lesson}</div>
-                  <Button className="text-xs" onClick={() => setEditing(s)}>
-                    Edit
-                  </Button>
+                  <Button className="text-xs" onClick={() => setEditing(s)}>Edit</Button>
                 </div>
               </div>
               <div className="text-sm grid sm:grid-cols-3 gap-2 mt-1">
@@ -1107,9 +943,7 @@ function PageStudies({ state, setState }) {
               </div>
               <div className="text-xs opacity-60 mt-1">
                 🕒 saved {prettyTime(s.createdAt)}
-                {s.updatedAt && s.updatedAt !== s.createdAt
-                  ? ` • updated ${prettyTime(s.updatedAt)}`
-                  : ""}
+                {s.updatedAt && s.updatedAt !== s.createdAt ? ` • updated ${prettyTime(s.updatedAt)}` : ""}
               </div>
             </div>
           ))}
@@ -1119,31 +953,13 @@ function PageStudies({ state, setState }) {
       <Modal open={!!editing} onClose={() => setEditing(null)} title="Edit Study">
         {editing && (
           <div className="space-y-2">
-            <Input
-              placeholder="Name"
-              value={editing.name}
-              onChange={(e) => setEditing({ ...editing, name: e.target.value })}
-            />
+            <Input placeholder="Name" value={editing.name} onChange={(e) => setEditing({ ...editing, name: e.target.value })} />
             <div>
               <div className="text-xs mb-1 opacity-70">Lesson number</div>
-              <Input
-                type="number"
-                min={1}
-                max={60}
-                value={editing.lesson}
-                onChange={(e) => setEditing({ ...editing, lesson: Number(e.target.value) })}
-              />
+              <Input type="number" min={1} max={60} value={editing.lesson} onChange={(e) => setEditing({ ...editing, lesson: Number(e.target.value) })} />
             </div>
-            <Input
-              type="date"
-              value={editing.nextDate || ""}
-              onChange={(e) => setEditing({ ...editing, nextDate: e.target.value })}
-            />
-            <TextArea
-              placeholder="Notes"
-              value={editing.notes || ""}
-              onChange={(e) => setEditing({ ...editing, notes: e.target.value })}
-            />
+            <Input type="date" value={editing.nextDate || ""} onChange={(e) => setEditing({ ...editing, nextDate: e.target.value })} />
+            <TextArea placeholder="Notes" value={editing.notes || ""} onChange={(e) => setEditing({ ...editing, notes: e.target.value })} />
             <div className="flex gap-2">
               <Button
                 className="bg-blue-600 text-white"
@@ -1238,16 +1054,11 @@ function PageScriptureTool({ state, setState }) {
     <div>
       <Section title="Auto-Suggest (based on last scripture)">
         <div className="grid md:grid-cols-3 gap-3 items-start">
-          <Input
-            value={lastShared}
-            onChange={(e) => setLastShared(e.target.value)}
-            placeholder="Last shared (e.g., Psalm 83:18 or Ps 83:18)"
-          />
+          <Input value={lastShared} onChange={(e) => setLastShared(e.target.value)} placeholder="Last shared (e.g., Psalm 83:18 or Ps 83:18)" />
           <div className="md:col-span-2 space-y-2">
             {inlineSuggestions.length === 0 ? (
               <div className="opacity-70">
-                No suggestions found for “{lastShared}”. Try Ps ↔ Psalm, or import a larger graph
-                below.
+                No suggestions found for “{lastShared}”. Try Ps ↔ Psalm, or import a larger graph below.
               </div>
             ) : (
               <ul className="list-disc ml-5">
@@ -1259,9 +1070,7 @@ function PageScriptureTool({ state, setState }) {
                 ))}
               </ul>
             )}
-            {extraCount > 0 && (
-              <div className="text-sm opacity-70">+{extraCount} more (not shown here).</div>
-            )}
+            {extraCount > 0 && <div className="text-sm opacity-70">+{extraCount} more (not shown here).</div>}
           </div>
         </div>
       </Section>
@@ -1302,13 +1111,9 @@ function PageScriptureTool({ state, setState }) {
               ))}
             </div>
           )}
-          <div className="mt-2 text-xs opacity-70">
-            Results are hidden until you search (min 2 characters or pick a suggestion).
-          </div>
+          <div className="mt-2 text-xs opacity-70">Results are hidden until you search (min 2 characters or pick a suggestion).</div>
           <div className="mt-2">
-            <Button type="submit" className="text-sm">
-              Search
-            </Button>
+            <Button type="submit" className="text-sm">Search</Button>
           </div>
         </form>
 
@@ -1318,10 +1123,7 @@ function PageScriptureTool({ state, setState }) {
               <div className="opacity-70">No topics found for “{q}”.</div>
             ) : (
               topics.map((t) => (
-                <div
-                  key={t.topic}
-                  className="rounded-xl border p-3 border-neutral-200 dark:border-neutral-800"
-                >
+                <div key={t.topic} className="rounded-xl border p-3 border-neutral-200 dark:border-neutral-800">
                   <div className="font-semibold mb-1">{t.topic}</div>
                   <div className="text-sm">
                     <span className="font-medium">Scriptures:</span>{" "}
@@ -1331,9 +1133,7 @@ function PageScriptureTool({ state, setState }) {
                     <div className="text-sm mt-1">
                       <span className="font-medium">Sample questions:</span>
                       <ul className="list-disc ml-5">
-                        {t.questions.map((qq, i) => (
-                          <li key={i}>{qq}</li>
-                        ))}
+                        {t.questions.map((qq, i) => (<li key={i}>{qq}</li>))}
                       </ul>
                     </div>
                   )}
@@ -1346,17 +1146,14 @@ function PageScriptureTool({ state, setState }) {
 
       <Section title="Import Recommendations (JSON)">
         <div className="text-sm opacity-75 mb-2">
-          Paste a JSON object with <code>scriptureSuggest</code> and/or{" "}
-          <code>topicLibrary</code>.
+          Paste a JSON object with <code>scriptureSuggest</code> and/or <code>topicLibrary</code>.
         </div>
         <TextArea
           placeholder='{"scriptureSuggest":{"Ps 83:18":[{"ref":"Rev 21:3-4","why":"..."}]},"topicLibrary":[{"topic":"...","refs":["..."],"questions":["..."]}]}'
           value={jsonText}
           onChange={(e) => setJsonText(e.target.value)}
         />
-        <div className="mt-2">
-          <Button onClick={importGraph}>Import</Button>
-        </div>
+        <div className="mt-2"><Button onClick={importGraph}>Import</Button></div>
       </Section>
     </div>
   );
@@ -1390,6 +1187,61 @@ export default function MinistryCompanion() {
   const [tab, setTab] = useLocalState("mc_tab", "Home");
   const [showSplash, setShowSplash] = useState(true);
 
+  // ✅ FIXED: cleanup function so file closes properly
   useEffect(() => {
     const t = setTimeout(() => setShowSplash(false), 1200);
-    return
+    return () => clearTimeout(t);
+  }, []);
+
+  const renderPage = () => {
+    switch (tab) {
+      case "Home": return <PageHome state={state} setState={setState} />;
+      case "Territory": return <PageTerritory state={state} setState={setState} />;
+      case "Return Visits": return <PageReturnVisits state={state} setState={setState} />;
+      case "Bible Studies": return <PageStudies state={state} setState={setState} />;
+      case "Scripture Tool": return <PageScriptureTool state={state} setState={setState} />;
+      default: return null;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
+      {/* Splash */}
+      {showSplash && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-neutral-950">
+          <div className="text-center">
+            <div className="text-3xl font-extrabold tracking-tight">Ministry Companion</div>
+            <div className="mt-2 opacity-70 text-sm">Field Service • Return Visits • Studies • Scriptures</div>
+          </div>
+        </div>
+      )}
+
+      {/* Header */}
+      <header className="sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-neutral-950/70 border-b border-neutral-200/70 dark:border-neutral-800">
+        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+          <div className="font-semibold">Ministry Companion</div>
+          <nav className="flex gap-2">
+            {TABS.map((t) => (
+              <button
+                key={t}
+                onClick={() => setTab(t)}
+                className={`px-3 py-1.5 rounded-xl border text-sm ${
+                  tab === t
+                    ? "bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900"
+                    : "border-neutral-300 dark:border-neutral-700"
+                }`}
+              >
+                {t}
+              </button>
+            ))}
+          </nav>
+        </div>
+      </header>
+
+      <main className="max-w-5xl mx-auto p-4 space-y-6">
+        <Stats state={state} />
+        {renderPage()}
+      </main>
+    </div>
+  );
+}
