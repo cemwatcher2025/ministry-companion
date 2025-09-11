@@ -1064,21 +1064,6 @@ function PageScriptureTool({ state, setState }) {
     });
   }, [submitted, dq, state.topicLibrary]);
 
-  /* JSON import */
-  const [jsonText, setJsonText] = useState("");
-  const importGraph = () => {
-    try {
-      const data = JSON.parse(jsonText);
-      const sug = data.scriptureSuggest || data;
-      const lib = data.topicLibrary || state.topicLibrary;
-      setState((s) => ({ ...s, scriptureSuggest: sug, topicLibrary: lib }));
-      setJsonText("");
-      alert("Imported. Suggestions updated.");
-    } catch {
-      alert("Invalid JSON. Expect {scriptureSuggest:{}, topicLibrary: []}");
-    }
-  };
-
   /* Click-away for typeahead */
   useEffect(() => {
     const onDoc = (e) => {
