@@ -1173,20 +1173,6 @@ function PageScriptureTool({ state, setState }) {
           </div>
         )}
       </Section>
-
-      <Section title="Import Recommendations (JSON)">
-        <div className="text-sm opacity-75 mb-2">
-          Paste a JSON object with <code>scriptureSuggest</code> and/or <code>topicLibrary</code>.
-        </div>
-        <TextArea
-          placeholder='{"scriptureSuggest":{"Ps 83:18":[{"ref":"Rev 21:3-4","why":"..."}]},"topicLibrary":[{"topic":"...","refs":["..."],"questions":["..."]}]}'
-          value={jsonText}
-          onChange={(e) => setJsonText(e.target.value)}
-        />
-        <div className="mt-2">
-          <Button onClick={importGraph}>Import</Button>
-        </div>
-      </Section>
     </div>
   );
 }
