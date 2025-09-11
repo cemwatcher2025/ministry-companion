@@ -985,17 +985,129 @@ function PageStudies({ state, setState }) {
 }
 
 function PageScriptureTool({ state, setState }) {
+  // CONFIG
   const MAX_INLINE = 5;
-  const TYPEAHEAD_CAP = 12;
+  const TYPEAHEAD_CAP = 20;
   const MIN_CHARS = 2;
 
-  const [lastShared, setLastShared] = useState("Ps 83:18");
+  // The mapping graph: {"Ps 83:18":[{ref,why,ask}, ...], ...}
   const graph = state.scriptureSuggest || {};
-  const key = findRefKey(graph, normalizeDashes(lastShared));
-  const nextSuggestions = key ? graph[key] || [] : [];
-  const inlineSuggestions = nextSuggestions.slice(0, MAX_INLINE);
-  const extraCount = Math.max(0, nextSuggestions.length - inlineSuggestions.length);
 
+  // ────────────────────────────────────────────────────────────────────────────
+  // Typeahead state for "Auto-Suggest (based on last scripture)"
+  // ────────────────────────────────────────────────────────────────────────────
+  const [lastShared, setLastShared] = useState("");             // what's in the input
+  const [confirmedKey, setConfirmedKey] = useState(null);       // normalized/selected key
+  const [open, setOpen] = useState(false);                      // dropdown visibility
+  const [hi, setHi] = useState(-1);                             // highlighted index
+  const inputRef = React.useRef(null);
+
+  // Build a searchable list of scripture keys (normalized + original)
+  const scriptureKeys = useMemo(() => {
+    return Object.keys(graph || {}).map((k) => ({
+      key: k,
+      norm: normRef(k),
+    }));
+  }, [graph]);
+
+  // Compute options for the typeahead based on what's typed
+  const options = useMemo(() => {
+    const q = lastShared.trim();
+    if (q.length < MIN_CHARS) return [];
+    const n = normRef(q);
+    // rank exact norm match first, then startsWith, then contains
+    const exact = scriptureKeys.filter((o) => o.norm === n);
+    const starts = scriptureKeys.filter((o) => o.norm.startsWith(n) && o.norm !== n);
+    const contains = scriptureKeys.filter(
+      (o) => o.norm.includes(n) && !o.norm.startsWith(n)
+    );
+    const merged = [...exact, ...starts, ...contains];
+    // unique by key then cap
+    const seen = new Set();
+    const uniq = [];
+    for (const o of merged) {
+      if (!seen.has(o.key)) {
+        uniq.push(o);
+        seen.add(o.key);
+      }
+      if (uniq.length >= TYPEAHEAD_CAP) break;
+    }
+    return uniq;
+  }, [lastShared, scriptureKeys]);
+
+  // When user confirms a key (click or keyboard)
+  const confirm = (key) => {
+    setLastShared(key);
+    setConfirmedKey(key);
+    setOpen(false);
+    setHi(-1);
+    // keep focus for quick edits on desktop
+    requestAnimationFrame(() => inputRef.current?.focus());
+  };
+
+  // Keyboard handlers
+  const onKeyDown = (e) => {
+    if (!open && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
+      if (options.length > 0) {
+        setOpen(true);
+        setHi(0);
+        e.preventDefault();
+      }
+      return;
+    }
+    if (!open) {
+      if ((e.key === "Enter" || e.key === "Tab") && options.length > 0) {
+        // quick accept first suggestion if not already confirmed
+        if (!confirmedKey) {
+          confirm(options[0].key);
+          e.preventDefault();
+        }
+      }
+      return;
+    }
+    if (e.key === "ArrowDown") {
+      setHi((i) => (i + 1) % options.length);
+      e.preventDefault();
+    } else if (e.key === "ArrowUp") {
+      setHi((i) => (i - 1 + options.length) % options.length);
+      e.preventDefault();
+    } else if (e.key === "Enter" || e.key === "Tab") {
+      const pick = options[Math.max(0, hi)];
+      if (pick) confirm(pick.key);
+      e.preventDefault();
+    } else if (e.key === "Escape") {
+      setOpen(false);
+      setHi(-1);
+    }
+  };
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const onDoc = (e) => {
+      if (!inputRef.current) return;
+      const container = inputRef.current.closest("#scripture-typeahead");
+      if (container && !container.contains(e.target)) {
+        setOpen(false);
+        setHi(-1);
+      }
+    };
+    document.addEventListener("mousedown", onDoc);
+    return () => document.removeEventListener("mousedown", onDoc);
+  }, []);
+
+  // Follow-up suggestions (only when a key is confirmed)
+  const followUps = useMemo(() => {
+    if (!confirmedKey) return [];
+    return Array.isArray(graph[confirmedKey]) ? graph[confirmedKey] : [];
+  }, [confirmedKey, graph]);
+
+  // Optional: quick “more hidden” counter if list is long
+  const inlineSuggestions = followUps.slice(0, MAX_INLINE);
+  const extraCount = Math.max(0, followUps.length - inlineSuggestions.length);
+
+  // ────────────────────────────────────────────────────────────────────────────
+  // Topic/Concern search (kept from your current version)
+  // ────────────────────────────────────────────────────────────────────────────
   const [q, setQ] = useState("");
   const dq = useDebounced(q, 200);
   const [submitted, setSubmitted] = useState(false);
@@ -1003,8 +1115,8 @@ function PageScriptureTool({ state, setState }) {
 
   const keywordOptions = useMemo(() => {
     const topicNames = (state.topicLibrary || []).map((t) => t.topic);
-    const scriptureKeys = Object.keys(graph);
-    const all = Array.from(new Set([...topicNames, ...scriptureKeys]));
+    const scriptureKeysOnly = Object.keys(graph);
+    const all = Array.from(new Set([...topicNames, ...scriptureKeysOnly]));
     const n = dq.toLowerCase();
     if (!n || !focus) return [];
     return all.filter((x) => x.toLowerCase().includes(n)).slice(0, TYPEAHEAD_CAP);
@@ -1041,43 +1153,93 @@ function PageScriptureTool({ state, setState }) {
       alert("Invalid JSON. Expect {scriptureSuggest:{}, topicLibrary: []}");
     }
   };
-  useEffect(() => {
-    const onDoc = (e) => {
-      const c = document.getElementById("topic-search-container");
-      if (c && !c.contains(e.target)) setFocus(false);
-    };
-    document.addEventListener("mousedown", onDoc);
-    return () => document.removeEventListener("mousedown", onDoc);
-  }, []);
 
   return (
     <div>
+      {/* ───────────────────── Auto-Suggest with Typeahead ───────────────────── */}
       <Section title="Auto-Suggest (based on last scripture)">
-        <div className="grid md:grid-cols-3 gap-3 items-start">
-          <Input value={lastShared} onChange={(e) => setLastShared(e.target.value)} placeholder="Last shared (e.g., Psalm 83:18 or Ps 83:18)" />
-          <div className="md:col-span-2 space-y-2">
-            {inlineSuggestions.length === 0 ? (
+        <div id="scripture-typeahead" className="relative">
+          <input
+            ref={inputRef}
+            className="w-full px-3 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900"
+            placeholder="Start typing a scripture (e.g., Ps 83:18)…"
+            value={lastShared}
+            onChange={(e) => {
+              const v = e.target.value;
+              setLastShared(v);
+              setConfirmedKey(null);     // not confirmed yet
+              setOpen(v.trim().length >= MIN_CHARS && options.length > 0);
+              setHi(options.length > 0 ? 0 : -1);
+            }}
+            onFocus={() => {
+              if (lastShared.trim().length >= MIN_CHARS && options.length > 0) setOpen(true);
+            }}
+            onKeyDown={onKeyDown}
+            onBlur={() => {
+              // Small delay so clicks on dropdown still work
+              setTimeout(() => setOpen(false), 120);
+            }}
+            autoCapitalize="none"
+            autoCorrect="off"
+          />
+
+          {/* Dropdown */}
+          {open && options.length > 0 && (
+            <div className="absolute z-20 mt-1 w-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl shadow max-h-64 overflow-auto">
+              {options.map((opt, i) => (
+                <div
+                  key={opt.key}
+                  role="button"
+                  tabIndex={0}
+                  className={
+                    "px-3 py-2 cursor-pointer " +
+                    (i === hi ? "bg-neutral-100 dark:bg-neutral-800" : "")
+                  }
+                  onMouseEnter={() => setHi(i)}
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={() => confirm(opt.key)}
+                >
+                  {opt.key}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Follow-ups are shown only AFTER a key is confirmed */}
+          <div className="mt-3 space-y-2">
+            {!confirmedKey ? (
+              <div className="opacity-70 text-sm">
+                Select a scripture above to see recommended follow-ups.
+              </div>
+            ) : inlineSuggestions.length === 0 ? (
               <div className="opacity-70">
-                No suggestions found for “{lastShared}”. Try Ps ↔ Psalm, or import a larger graph below.
+                No suggestions found for “{confirmedKey}”. Try Ps ↔ Psalm, or import a larger
+                mapping below.
               </div>
             ) : (
-              <ul className="list-disc ml-5">
-                {inlineSuggestions.map((s, i) => (
-                  <li key={i}>
-                    <span className="font-medium">{s.ref}</span> — {s.why}
-                    {s.ask ? ` — Q: ${s.ask}` : ""}
-                  </li>
-                ))}
-              </ul>
+              <>
+                <ul className="list-disc ml-5">
+                  {inlineSuggestions.map((s, i) => (
+                    <li key={i}>
+                      <span className="font-medium">{s.ref}</span> — {s.why}
+                      {s.ask ? ` — Q: ${s.ask}` : ""}
+                    </li>
+                  ))}
+                </ul>
+                {extraCount > 0 && (
+                  <div className="text-sm opacity-70">
+                    +{extraCount} more (not shown here).
+                  </div>
+                )}
+              </>
             )}
-            {extraCount > 0 && <div className="text-sm opacity-70">+{extraCount} more (not shown here).</div>}
           </div>
         </div>
       </Section>
 
+      {/* ───────────────────── Search by Concern / Topic (unchanged) ───────────────────── */}
       <Section title="Search by Concern or Topic">
         <form
-          id="topic-search-container"
           onSubmit={(e) => {
             e.preventDefault();
             setSubmitted(true);
@@ -1100,6 +1262,7 @@ function PageScriptureTool({ state, setState }) {
                 <div
                   key={opt}
                   className="px-3 py-2 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                  onMouseDown={(e) => e.preventDefault()}
                   onClick={() => {
                     setQ(opt);
                     setSubmitted(true);
@@ -1111,19 +1274,26 @@ function PageScriptureTool({ state, setState }) {
               ))}
             </div>
           )}
-          <div className="mt-2 text-xs opacity-70">Results are hidden until you search (min 2 characters or pick a suggestion).</div>
+          <div className="mt-2 text-xs opacity-70">
+            Results are hidden until you search (min {MIN_CHARS} characters or pick a suggestion).
+          </div>
           <div className="mt-2">
-            <Button type="submit" className="text-sm">Search</Button>
+            <Button type="submit" className="text-sm">
+              Search
+            </Button>
           </div>
         </form>
 
-        {submitted && q.trim().length >= 2 && (
+        {submitted && q.trim().length >= MIN_CHARS && (
           <div className="grid md:grid-cols-2 gap-3 mt-3">
             {topics.length === 0 ? (
               <div className="opacity-70">No topics found for “{q}”.</div>
             ) : (
               topics.map((t) => (
-                <div key={t.topic} className="rounded-xl border p-3 border-neutral-200 dark:border-neutral-800">
+                <div
+                  key={t.topic}
+                  className="rounded-xl border p-3 border-neutral-200 dark:border-neutral-800"
+                >
                   <div className="font-semibold mb-1">{t.topic}</div>
                   <div className="text-sm">
                     <span className="font-medium">Scriptures:</span>{" "}
@@ -1133,7 +1303,9 @@ function PageScriptureTool({ state, setState }) {
                     <div className="text-sm mt-1">
                       <span className="font-medium">Sample questions:</span>
                       <ul className="list-disc ml-5">
-                        {t.questions.map((qq, i) => (<li key={i}>{qq}</li>))}
+                        {t.questions.map((qq, i) => (
+                          <li key={i}>{qq}</li>
+                        ))}
                       </ul>
                     </div>
                   )}
@@ -1144,16 +1316,20 @@ function PageScriptureTool({ state, setState }) {
         )}
       </Section>
 
+      {/* ───────────────────── Import (unchanged) ───────────────────── */}
       <Section title="Import Recommendations (JSON)">
         <div className="text-sm opacity-75 mb-2">
-          Paste a JSON object with <code>scriptureSuggest</code> and/or <code>topicLibrary</code>.
+          Paste a JSON object with <code>scriptureSuggest</code> and/or{" "}
+          <code>topicLibrary</code>.
         </div>
         <TextArea
           placeholder='{"scriptureSuggest":{"Ps 83:18":[{"ref":"Rev 21:3-4","why":"..."}]},"topicLibrary":[{"topic":"...","refs":["..."],"questions":["..."]}]}'
           value={jsonText}
           onChange={(e) => setJsonText(e.target.value)}
         />
-        <div className="mt-2"><Button onClick={importGraph}>Import</Button></div>
+        <div className="mt-2">
+          <Button onClick={importGraph}>Import</Button>
+        </div>
       </Section>
     </div>
   );
