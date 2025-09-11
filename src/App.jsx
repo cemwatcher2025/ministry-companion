@@ -1,52 +1,22 @@
 import React, { useEffect, useMemo, useState } from "react";
 
-/**
- * Ministry Companion — FULL App.jsx
- *
- * Features
- * - Splash + header “Ministry Companion”
- * - Home: territory #, links to jw.org/JW Library, daily thought (overwrite by day),
- *   service hours (categories, edit), monthly copy/export
- * - Territory: log doors incl. person’s name; edit visits (ADDRESS editable with duplicate warning),
- *   today-only NH export with timestamps
- * - Return Visits: add/edit; “Suggest next scripture” modal from mapping graph; timestamps
- * - Bible Studies: “Lesson number” labeled (add and edit); mark lesson complete
- * - Scripture Tool: predictive typeahead (hides on blur/submit), search by topic or scripture,
- *   import JSON (scriptureSuggest + topicLibrary)
- *
- * Storage
- * - Local only (localStorage key: mc_state_v1). Your data persists in the browser.
- */
-
-/* ------------------ Utilities ------------------ */
+/* =========================================================
+   Utilities
+========================================================= */
 const uid = (p = "id") => `${p}_${Math.random().toString(36).slice(2, 9)}`;
 const todayISO = () => new Date().toISOString().slice(0, 10);
 const prettyTime = (d) =>
   new Date(d || Date.now()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 const ym = (d) => (d || todayISO()).slice(0, 7);
 const normalizeDashes = (s) => (s || "").replace(/–|—/g, "-").replace(/\s+/g, " ").trim();
+const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
 
-function useLocalState(key, fallback) {
-  const [value, setValue] = useState(() => {
-    try {
-      const raw = localStorage.getItem(key);
-      return raw ? JSON.parse(raw) : fallback;
-    } catch {
-      return fallback;
-    }
-  });
-  useEffect(() => {
-    try {
-      localStorage.setItem(key, JSON.stringify(value));
-    } catch {}
-  }, [key, value]);
-  return [value, setValue];
-}
 function copyToClipboard(text) {
   try {
     navigator.clipboard.writeText(text);
   } catch {}
 }
+
 function useDebounced(value, delay = 200) {
   const [v, setV] = useState(value);
   useEffect(() => {
@@ -72,7 +42,6 @@ const BOOK_ALIASES = {
   romans: "rom",
   rom: "rom",
   james: "jas",
-  jas: "jas",
   "1 john": "1 john",
   "i john": "1 john",
   "2 john": "2 john",
@@ -104,7 +73,7 @@ function findRefKey(graph, input) {
   return null;
 }
 
-/* NH export */
+/* NH export text */
 function buildNHText(state, nhOnly) {
   const today = todayISO();
   const items = (state.visits || [])
@@ -126,7 +95,9 @@ function buildNHText(state, nhOnly) {
   return [header, "", ...items].join("\n");
 }
 
-/* ------------------ Seed Data ------------------ */
+/* =========================================================
+   Seed Data
+========================================================= */
 const SCRIPTURE_SUGGEST_STARTER = {
   "Ps 83:18": [
     {
@@ -157,6 +128,7 @@ const TOPIC_LIBRARY_STARTER = [
     ],
   },
 ];
+
 const SEED = {
   territoryNumber: "",
   dailyThoughts: [],
@@ -169,7 +141,53 @@ const SEED = {
   topicLibrary: TOPIC_LIBRARY_STARTER,
 };
 
-/* ------------------ UI Primitives ------------------ */
+/* =========================================================
+   Safe Persistence (migration-friendly)
+========================================================= */
+const STORAGE_KEYS = ["mc_state_v1", "mc_state"];
+const STORAGE_PRIMARY = "mc_state_v1";
+
+function deepMergeDefaults(existing, defaults) {
+  if (Array.isArray(defaults)) {
+    return Array.isArray(existing) ? existing : defaults;
+  }
+  if (defaults && typeof defaults === "object") {
+    const out = { ...defaults };
+    if (existing && typeof existing === "object") {
+      for (const k of Object.keys(existing)) {
+        out[k] = deepMergeDefaults(existing[k], defaults[k]);
+      }
+    }
+    return out;
+  }
+  return existing ?? defaults;
+}
+
+function loadAndMigrate(seed) {
+  let found = null;
+  for (const k of STORAGE_KEYS) {
+    const raw = localStorage.getItem(k);
+    if (raw) {
+      found = { raw, key: k };
+      break;
+    }
+  }
+  if (!found) return seed;
+  try {
+    const parsed = JSON.parse(found.raw);
+    const merged = deepMergeDefaults(parsed, seed);
+    if (found.key !== STORAGE_PRIMARY) {
+      localStorage.setItem(STORAGE_PRIMARY, JSON.stringify(merged));
+    }
+    return merged;
+  } catch {
+    return seed;
+  }
+}
+
+/* =========================================================
+   UI Primitives
+========================================================= */
 const Button = ({ children, className = "", ...props }) => (
   <button
     className={
@@ -181,6 +199,7 @@ const Button = ({ children, className = "", ...props }) => (
     {children}
   </button>
 );
+
 const Input = (props) => (
   <input
     {...props}
@@ -190,6 +209,7 @@ const Input = (props) => (
     }
   />
 );
+
 const Select = ({ options = [], value, onChange, className = "" }) => (
   <select
     value={value}
@@ -206,6 +226,7 @@ const Select = ({ options = [], value, onChange, className = "" }) => (
     ))}
   </select>
 );
+
 const TextArea = (props) => (
   <textarea
     {...props}
@@ -215,6 +236,7 @@ const TextArea = (props) => (
     }
   />
 );
+
 const Section = ({ title, children, right }) => (
   <div className="mb-5">
     <div className="flex items-center justify-between mb-2">
@@ -226,6 +248,7 @@ const Section = ({ title, children, right }) => (
     </div>
   </div>
 );
+
 function Modal({ open, onClose, title, children, footer }) {
   useEffect(() => {
     function onEsc(e) {
@@ -258,7 +281,9 @@ function Modal({ open, onClose, title, children, footer }) {
   );
 }
 
-/* ------------------ Mutations ------------------ */
+/* =========================================================
+   Mutations
+========================================================= */
 const addDailyThought = (text, setState) => {
   if (!text?.trim()) return;
   const today = todayISO();
@@ -270,12 +295,12 @@ const addDailyThought = (text, setState) => {
     ],
   }));
 };
+
 const addDoorLog = ({ address, status, scripture, literature, notes, personName }, state, setState) => {
   if (!address?.trim()) return;
 
-  // Duplicate address prompt if a household with same address already exists
   const existingIdx = state.households.findIndex(
-    (h) => h.address.trim().toLowerCase() === address.trim().toLowerCase()
+    (h) => (h.address || "").trim().toLowerCase() === address.trim().toLowerCase()
   );
   if (existingIdx !== -1) {
     const ok = window.confirm(
@@ -287,10 +312,7 @@ const addDoorLog = ({ address, status, scripture, literature, notes, personName 
   let idx = state.households.findIndex((h) => h.address === address);
   let households = [...state.households];
   if (idx === -1) {
-    households = [
-      ...households,
-      { id: uid("H"), address, notes: "", dnc: status === "DNC" },
-    ];
+    households = [...households, { id: uid("H"), address, notes: "", dnc: status === "DNC" }];
     idx = households.length - 1;
   }
   const visit = {
@@ -330,8 +352,10 @@ const addDoorLog = ({ address, status, scripture, literature, notes, personName 
   setState((s) => ({ ...s, households, visits, returnVisits }));
 };
 
-/* ------------------ Pages ------------------ */
-function PageHome({ state, setState }) {
+/* =========================================================
+   Pages
+========================================================= */
+function PageHome({ state, setState, openSettings }) {
   const [thought, setThought] = useState("");
   const [hours, setHours] = useState("");
   const [cat, setCat] = useState("Door-to-door");
@@ -397,6 +421,7 @@ function PageHome({ state, setState }) {
             >
               JW Library ↗
             </a>
+            <Button className="text-sm" onClick={openSettings}>Settings</Button>
           </div>
         }
       >
@@ -491,16 +516,23 @@ function PageHome({ state, setState }) {
               .slice(-6)
               .reverse()
               .map((l) => (
-                <div key={l.id} className="rounded-xl border p-3 border-neutral-200 dark:border-neutral-800">
+                <div
+                  key={l.id}
+                  className="rounded-xl border p-3 border-neutral-200 dark:border-neutral-800"
+                >
                   <div className="flex items-center justify-between">
                     <div>
                       {l.date} — <b>{l.hours}h</b> — {l.category || "—"} {l.notes ? " — " + l.notes : ""}
                     </div>
-                    <Button className="text-xs" onClick={() => setEdit(l)}>Edit</Button>
+                    <Button className="text-xs" onClick={() => setEdit(l)}>
+                      Edit
+                    </Button>
                   </div>
                   <div className="text-xs opacity-60">
                     🕒 {prettyTime(l.createdAt)}
-                    {l.updatedAt && l.updatedAt !== l.createdAt ? ` • updated ${prettyTime(l.updatedAt)}` : ""}
+                    {l.updatedAt && l.updatedAt !== l.createdAt
+                      ? ` • updated ${prettyTime(l.updatedAt)}`
+                      : ""}
                   </div>
                 </div>
               ))}
@@ -512,7 +544,12 @@ function PageHome({ state, setState }) {
         {edit && (
           <div className="space-y-2">
             <Input type="date" value={edit.date} onChange={(e) => setEdit({ ...edit, date: e.target.value })} />
-            <Input type="number" step="0.25" value={edit.hours} onChange={(e) => setEdit({ ...edit, hours: Number(e.target.value) })} />
+            <Input
+              type="number"
+              step="0.25"
+              value={edit.hours}
+              onChange={(e) => setEdit({ ...edit, hours: Number(e.target.value) })}
+            />
             <Select
               value={edit.category || "Other"}
               onChange={(v) => setEdit({ ...edit, category: v })}
@@ -525,9 +562,7 @@ function PageHome({ state, setState }) {
                 onClick={() => {
                   setState((s) => ({
                     ...s,
-                    serviceLogs: s.serviceLogs.map((x) =>
-                      x.id === edit.id ? { ...edit, updatedAt: Date.now() } : x
-                    ),
+                    serviceLogs: s.serviceLogs.map((x) => (x.id === edit.id ? { ...edit, updatedAt: Date.now() } : x)),
                   }));
                   setEdit(null);
                 }}
@@ -562,14 +597,11 @@ function PageTerritory({ state, setState }) {
 
   const saveEdit = () => {
     setState((s) => {
-      const visits = s.visits.map((v) =>
-        v.id === editing.id ? { ...editing, updatedAt: Date.now() } : v
-      );
+      const visits = s.visits.map((v) => (v.id === editing.id ? { ...editing, updatedAt: Date.now() } : v));
       const households = [...s.households];
       const hid = editing.householdId;
       if (households[hid]) {
-        // ✅ FIXED: disambiguated ?? with || and added ?. for safety
-        const newAddr = ((editing.__address ?? households[hid]?.address) || "").trim();
+        const newAddr = ((editing.__address ?? households[hid]?.address) || "").trim(); // parentheses fix
         if (newAddr) {
           const dupAt = households.findIndex(
             (h, i) => i !== hid && ((h.address || "").trim().toLowerCase() === newAddr.toLowerCase())
@@ -593,11 +625,7 @@ function PageTerritory({ state, setState }) {
         <div className="grid md:grid-cols-2 gap-3">
           <Input placeholder="Address (e.g., 1410 Amherst)" value={address} onChange={(e) => setAddress(e.target.value)} />
           <Input placeholder="Person’s name" value={personName} onChange={(e) => setPersonName(e.target.value)} />
-          <Select
-            options={["NH", "RV", "NI", "DNC", "Vacant", "Empty", "No Trespassing"]}
-            value={status}
-            onChange={setStatus}
-          />
+          <Select options={["NH", "RV", "NI", "DNC", "Vacant", "Empty", "No Trespassing"]} value={status} onChange={setStatus} />
           <Input placeholder="Scripture shared" value={scripture} onChange={(e) => setScripture(e.target.value)} />
           <Input placeholder="Literature left (Invitation, Tract, Watchtower, ELF)" value={literature} onChange={(e) => setLiterature(e.target.value)} />
           <TextArea placeholder="Notes…" value={notes} onChange={(e) => setNotes(e.target.value)} />
@@ -607,12 +635,24 @@ function PageTerritory({ state, setState }) {
             className="bg-blue-600 text-white"
             onClick={() => {
               addDoorLog({ address, status, scripture, literature, notes, personName }, state, setState);
-              setAddress(""); setPersonName(""); setScripture(""); setLiterature(""); setNotes("");
+              setAddress("");
+              setPersonName("");
+              setScripture("");
+              setLiterature("");
+              setNotes("");
             }}
           >
             Save Entry
           </Button>
-          <Button onClick={() => { setAddress(""); setPersonName(""); setScripture(""); setLiterature(""); setNotes(""); }}>
+          <Button
+            onClick={() => {
+              setAddress("");
+              setPersonName("");
+              setScripture("");
+              setLiterature("");
+              setNotes("");
+            }}
+          >
             Clear
           </Button>
         </div>
@@ -629,9 +669,7 @@ function PageTerritory({ state, setState }) {
           </div>
         }
       >
-        <div className="text-sm opacity-75">
-          Copies a bullet list of today’s doors (default: everything except RV). Share with the territory holder.
-        </div>
+        <div className="text-sm opacity-75">Copies a bullet list of today’s doors (default: everything except RV). Share with the territory holder.</div>
       </Section>
 
       <Section title="Recent Activity">
@@ -642,8 +680,8 @@ function PageTerritory({ state, setState }) {
                 {v.date} • {prettyTime(v.createdAt)}
               </div>
               <div className="font-medium">
-                {(state.households[v.householdId] && state.households[v.householdId].address) || "(unknown)"}{" "}
-                — <span className="px-2 py-0.5 rounded-full text-xs border">{v.status}</span>
+                {(state.households[v.householdId] && state.households[v.householdId].address) || "(unknown)"} —{" "}
+                <span className="px-2 py-0.5 rounded-full text-xs border">{v.status}</span>
               </div>
               {v.personName && <div className="text-sm">👤 {v.personName}</div>}
               {(v.scripture || v.literature || v.notes) && (
@@ -654,7 +692,9 @@ function PageTerritory({ state, setState }) {
                 </div>
               )}
               <div className="mt-2">
-                <Button className="text-xs" onClick={() => setEditing(v)}>Edit</Button>
+                <Button className="text-xs" onClick={() => setEditing(v)}>
+                  Edit
+                </Button>
               </div>
             </div>
           ))}
@@ -668,8 +708,7 @@ function PageTerritory({ state, setState }) {
               placeholder="Address"
               value={
                 (editing.__address ??
-                  (state.households[editing.householdId] &&
-                    state.households[editing.householdId].address)) || ""
+                  (state.households[editing.householdId] && state.households[editing.householdId].address)) || ""
               }
               onChange={(e) => setEditing({ ...editing, __address: e.target.value })}
             />
@@ -679,7 +718,9 @@ function PageTerritory({ state, setState }) {
             <Input placeholder="Literature" value={editing.literature || ""} onChange={(e) => setEditing({ ...editing, literature: e.target.value })} />
             <TextArea placeholder="Notes" value={editing.notes || ""} onChange={(e) => setEditing({ ...editing, notes: e.target.value })} />
             <div className="flex gap-2">
-              <Button className="bg-blue-600 text-white" onClick={saveEdit}>Save</Button>
+              <Button className="bg-blue-600 text-white" onClick={saveEdit}>
+                Save
+              </Button>
               <Button onClick={() => setEditing(null)}>Cancel</Button>
             </div>
           </div>
@@ -699,9 +740,7 @@ function PageReturnVisits({ state, setState }) {
     bestTime: "",
     notes: "",
   });
-  const sorted = [...state.returnVisits].sort((a, b) =>
-    (a.nextVisit || "").localeCompare(b.nextVisit || "")
-  );
+  const sorted = [...state.returnVisits].sort((a, b) => (a.nextVisit || "").localeCompare(b.nextVisit || ""));
   const [editing, setEditing] = useState(null);
   const [suggestFor, setSuggestFor] = useState(null);
   const graph = state.scriptureSuggest || {};
@@ -710,10 +749,7 @@ function PageReturnVisits({ state, setState }) {
     if (!form.personName || !form.address) return;
     setState((s) => ({
       ...s,
-      returnVisits: [
-        { id: uid("RV"), ...form, createdAt: Date.now(), updatedAt: Date.now() },
-        ...s.returnVisits,
-      ],
+      returnVisits: [{ id: uid("RV"), ...form, createdAt: Date.now(), updatedAt: Date.now() }, ...s.returnVisits],
     }));
     setForm({
       personName: "",
@@ -763,7 +799,9 @@ function PageReturnVisits({ state, setState }) {
                   <Button className="text-xs" onClick={() => setSuggestFor({ kind: "rv", data: rv })}>
                     Suggest next scripture
                   </Button>
-                  <Button className="text-xs" onClick={() => setEditing(rv)}>Edit</Button>
+                  <Button className="text-xs" onClick={() => setEditing(rv)}>
+                    Edit
+                  </Button>
                 </div>
               </div>
               <div className="text-sm mt-1 grid sm:grid-cols-3 gap-2">
@@ -798,9 +836,7 @@ function PageReturnVisits({ state, setState }) {
                 onClick={() => {
                   setState((s) => ({
                     ...s,
-                    returnVisits: s.returnVisits.map((x) =>
-                      x.id === editing.id ? { ...editing, updatedAt: Date.now() } : x
-                    ),
+                    returnVisits: s.returnVisits.map((x) => (x.id === editing.id ? { ...editing, updatedAt: Date.now() } : x)),
                   }));
                   setEditing(null);
                 }}
@@ -817,13 +853,13 @@ function PageReturnVisits({ state, setState }) {
         {suggestFor && (
           <div className="space-y-2">
             {(() => {
-              const rv = suggestFor.data;
+              const rv = suggestFor.kind === "rv" ? suggestFor.data : suggestFor.data;
               const list = suggestions(rv);
               if (list.length === 0) {
                 return (
                   <div className="opacity-70">
-                    No suggestions found for <b>{rv.lastScripture || "(none)"}</b>. Try “Ps 83:18” vs
-                    “Psalm 83:18”, or import more mappings in the Scripture Tool.
+                    No suggestions found for <b>{rv.lastScripture || "(none)"}</b>. Try “Ps 83:18” vs “Psalm 83:18”, or
+                    import more mappings in the Scripture Tool.
                   </div>
                 );
               }
@@ -847,6 +883,8 @@ function PageReturnVisits({ state, setState }) {
                               ),
                             }));
                           } else {
+                            // form case
+                            // eslint-disable-next-line no-unused-vars
                             setForm((f) => ({ ...f, nextScripture: s.ref }));
                           }
                           setSuggestFor(null);
@@ -881,7 +919,7 @@ function PageStudies({ state, setState }) {
         {
           id: uid("S"),
           name,
-          lesson: Number(lesson) || 1,
+          lesson: clamp(Number(lesson) || 1, 1, 60),
           nextDate,
           notes,
           createdAt: Date.now(),
@@ -899,9 +937,7 @@ function PageStudies({ state, setState }) {
   const markDone = (id) =>
     setState((st) => ({
       ...st,
-      studies: st.studies.map((x) =>
-        x.id === id ? { ...x, lesson: Number(x.lesson) + 1, updatedAt: Date.now() } : x
-      ),
+      studies: st.studies.map((x) => (x.id === id ? { ...x, lesson: clamp(Number(x.lesson) + 1, 1, 60), updatedAt: Date.now() } : x)),
     }));
 
   return (
@@ -929,7 +965,9 @@ function PageStudies({ state, setState }) {
                 <div className="font-semibold">{s.name}</div>
                 <div className="flex gap-2">
                   <div className="text-sm opacity-75">Lesson {s.lesson}</div>
-                  <Button className="text-xs" onClick={() => setEditing(s)}>Edit</Button>
+                  <Button className="text-xs" onClick={() => setEditing(s)}>
+                    Edit
+                  </Button>
                 </div>
               </div>
               <div className="text-sm grid sm:grid-cols-3 gap-2 mt-1">
@@ -956,7 +994,7 @@ function PageStudies({ state, setState }) {
             <Input placeholder="Name" value={editing.name} onChange={(e) => setEditing({ ...editing, name: e.target.value })} />
             <div>
               <div className="text-xs mb-1 opacity-70">Lesson number</div>
-              <Input type="number" min={1} max={60} value={editing.lesson} onChange={(e) => setEditing({ ...editing, lesson: Number(e.target.value) })} />
+              <Input type="number" min={1} max={60} value={editing.lesson} onChange={(e) => setEditing({ ...editing, lesson: clamp(Number(e.target.value) || 1, 1, 60) })} />
             </div>
             <Input type="date" value={editing.nextDate || ""} onChange={(e) => setEditing({ ...editing, nextDate: e.target.value })} />
             <TextArea placeholder="Notes" value={editing.notes || ""} onChange={(e) => setEditing({ ...editing, notes: e.target.value })} />
@@ -966,9 +1004,7 @@ function PageStudies({ state, setState }) {
                 onClick={() => {
                   setState((s) => ({
                     ...s,
-                    studies: s.studies.map((x) =>
-                      x.id === editing.id ? { ...editing, updatedAt: Date.now() } : x
-                    ),
+                    studies: s.studies.map((x) => (x.id === editing.id ? { ...editing, updatedAt: Date.now() } : x)),
                   }));
                   setEditing(null);
                 }}
@@ -985,129 +1021,17 @@ function PageStudies({ state, setState }) {
 }
 
 function PageScriptureTool({ state, setState }) {
-  // CONFIG
   const MAX_INLINE = 5;
-  const TYPEAHEAD_CAP = 20;
+  const TYPEAHEAD_CAP = 12;
   const MIN_CHARS = 2;
 
-  // The mapping graph: {"Ps 83:18":[{ref,why,ask}, ...], ...}
+  const [lastShared, setLastShared] = useState("Ps 83:18");
   const graph = state.scriptureSuggest || {};
+  const recognizedKey = findRefKey(graph, normalizeDashes(lastShared));
+  const nextSuggestions = recognizedKey ? graph[recognizedKey] || [] : [];
+  const inlineSuggestions = nextSuggestions.slice(0, MAX_INLINE);
+  const extraCount = Math.max(0, nextSuggestions.length - inlineSuggestions.length);
 
-  // ────────────────────────────────────────────────────────────────────────────
-  // Typeahead state for "Auto-Suggest (based on last scripture)"
-  // ────────────────────────────────────────────────────────────────────────────
-  const [lastShared, setLastShared] = useState("");             // what's in the input
-  const [confirmedKey, setConfirmedKey] = useState(null);       // normalized/selected key
-  const [open, setOpen] = useState(false);                      // dropdown visibility
-  const [hi, setHi] = useState(-1);                             // highlighted index
-  const inputRef = React.useRef(null);
-
-  // Build a searchable list of scripture keys (normalized + original)
-  const scriptureKeys = useMemo(() => {
-    return Object.keys(graph || {}).map((k) => ({
-      key: k,
-      norm: normRef(k),
-    }));
-  }, [graph]);
-
-  // Compute options for the typeahead based on what's typed
-  const options = useMemo(() => {
-    const q = lastShared.trim();
-    if (q.length < MIN_CHARS) return [];
-    const n = normRef(q);
-    // rank exact norm match first, then startsWith, then contains
-    const exact = scriptureKeys.filter((o) => o.norm === n);
-    const starts = scriptureKeys.filter((o) => o.norm.startsWith(n) && o.norm !== n);
-    const contains = scriptureKeys.filter(
-      (o) => o.norm.includes(n) && !o.norm.startsWith(n)
-    );
-    const merged = [...exact, ...starts, ...contains];
-    // unique by key then cap
-    const seen = new Set();
-    const uniq = [];
-    for (const o of merged) {
-      if (!seen.has(o.key)) {
-        uniq.push(o);
-        seen.add(o.key);
-      }
-      if (uniq.length >= TYPEAHEAD_CAP) break;
-    }
-    return uniq;
-  }, [lastShared, scriptureKeys]);
-
-  // When user confirms a key (click or keyboard)
-  const confirm = (key) => {
-    setLastShared(key);
-    setConfirmedKey(key);
-    setOpen(false);
-    setHi(-1);
-    // keep focus for quick edits on desktop
-    requestAnimationFrame(() => inputRef.current?.focus());
-  };
-
-  // Keyboard handlers
-  const onKeyDown = (e) => {
-    if (!open && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
-      if (options.length > 0) {
-        setOpen(true);
-        setHi(0);
-        e.preventDefault();
-      }
-      return;
-    }
-    if (!open) {
-      if ((e.key === "Enter" || e.key === "Tab") && options.length > 0) {
-        // quick accept first suggestion if not already confirmed
-        if (!confirmedKey) {
-          confirm(options[0].key);
-          e.preventDefault();
-        }
-      }
-      return;
-    }
-    if (e.key === "ArrowDown") {
-      setHi((i) => (i + 1) % options.length);
-      e.preventDefault();
-    } else if (e.key === "ArrowUp") {
-      setHi((i) => (i - 1 + options.length) % options.length);
-      e.preventDefault();
-    } else if (e.key === "Enter" || e.key === "Tab") {
-      const pick = options[Math.max(0, hi)];
-      if (pick) confirm(pick.key);
-      e.preventDefault();
-    } else if (e.key === "Escape") {
-      setOpen(false);
-      setHi(-1);
-    }
-  };
-
-  // Close dropdown on outside click
-  useEffect(() => {
-    const onDoc = (e) => {
-      if (!inputRef.current) return;
-      const container = inputRef.current.closest("#scripture-typeahead");
-      if (container && !container.contains(e.target)) {
-        setOpen(false);
-        setHi(-1);
-      }
-    };
-    document.addEventListener("mousedown", onDoc);
-    return () => document.removeEventListener("mousedown", onDoc);
-  }, []);
-
-  // Follow-up suggestions (only when a key is confirmed)
-  const followUps = useMemo(() => {
-    if (!confirmedKey) return [];
-    return Array.isArray(graph[confirmedKey]) ? graph[confirmedKey] : [];
-  }, [confirmedKey, graph]);
-
-  // Optional: quick “more hidden” counter if list is long
-  const inlineSuggestions = followUps.slice(0, MAX_INLINE);
-  const extraCount = Math.max(0, followUps.length - inlineSuggestions.length);
-
-  // ────────────────────────────────────────────────────────────────────────────
-  // Topic/Concern search (kept from your current version)
-  // ────────────────────────────────────────────────────────────────────────────
   const [q, setQ] = useState("");
   const dq = useDebounced(q, 200);
   const [submitted, setSubmitted] = useState(false);
@@ -1115,8 +1039,8 @@ function PageScriptureTool({ state, setState }) {
 
   const keywordOptions = useMemo(() => {
     const topicNames = (state.topicLibrary || []).map((t) => t.topic);
-    const scriptureKeysOnly = Object.keys(graph);
-    const all = Array.from(new Set([...topicNames, ...scriptureKeysOnly]));
+    const scriptureKeys = Object.keys(graph);
+    const all = Array.from(new Set([...topicNames, ...scriptureKeys]));
     const n = dq.toLowerCase();
     if (!n || !focus) return [];
     return all.filter((x) => x.toLowerCase().includes(n)).slice(0, TYPEAHEAD_CAP);
@@ -1140,6 +1064,7 @@ function PageScriptureTool({ state, setState }) {
     });
   }, [submitted, dq, state.topicLibrary]);
 
+  /* JSON import */
   const [jsonText, setJsonText] = useState("");
   const importGraph = () => {
     try {
@@ -1154,92 +1079,51 @@ function PageScriptureTool({ state, setState }) {
     }
   };
 
+  /* Click-away for typeahead */
+  useEffect(() => {
+    const onDoc = (e) => {
+      const c = document.getElementById("topic-search-container");
+      if (c && !c.contains(e.target)) setFocus(false);
+    };
+    document.addEventListener("mousedown", onDoc);
+    return () => document.removeEventListener("mousedown", onDoc);
+  }, []);
+
   return (
     <div>
-      {/* ───────────────────── Auto-Suggest with Typeahead ───────────────────── */}
       <Section title="Auto-Suggest (based on last scripture)">
-        <div id="scripture-typeahead" className="relative">
-          <input
-            ref={inputRef}
-            className="w-full px-3 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900"
-            placeholder="Start typing a scripture (e.g., Ps 83:18)…"
-            value={lastShared}
-            onChange={(e) => {
-              const v = e.target.value;
-              setLastShared(v);
-              setConfirmedKey(null);     // not confirmed yet
-              setOpen(v.trim().length >= MIN_CHARS && options.length > 0);
-              setHi(options.length > 0 ? 0 : -1);
-            }}
-            onFocus={() => {
-              if (lastShared.trim().length >= MIN_CHARS && options.length > 0) setOpen(true);
-            }}
-            onKeyDown={onKeyDown}
-            onBlur={() => {
-              // Small delay so clicks on dropdown still work
-              setTimeout(() => setOpen(false), 120);
-            }}
-            autoCapitalize="none"
-            autoCorrect="off"
-          />
-
-          {/* Dropdown */}
-          {open && options.length > 0 && (
-            <div className="absolute z-20 mt-1 w-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl shadow max-h-64 overflow-auto">
-              {options.map((opt, i) => (
-                <div
-                  key={opt.key}
-                  role="button"
-                  tabIndex={0}
-                  className={
-                    "px-3 py-2 cursor-pointer " +
-                    (i === hi ? "bg-neutral-100 dark:bg-neutral-800" : "")
-                  }
-                  onMouseEnter={() => setHi(i)}
-                  onMouseDown={(e) => e.preventDefault()}
-                  onClick={() => confirm(opt.key)}
-                >
-                  {opt.key}
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Follow-ups are shown only AFTER a key is confirmed */}
-          <div className="mt-3 space-y-2">
-            {!confirmedKey ? (
-              <div className="opacity-70 text-sm">
-                Select a scripture above to see recommended follow-ups.
-              </div>
-            ) : inlineSuggestions.length === 0 ? (
-              <div className="opacity-70">
-                No suggestions found for “{confirmedKey}”. Try Ps ↔ Psalm, or import a larger
-                mapping below.
-              </div>
-            ) : (
+        <div className="grid md:grid-cols-3 gap-3 items-start">
+          <Input value={lastShared} onChange={(e) => setLastShared(e.target.value)} placeholder="Last shared (e.g., Psalm 83:18 or Ps 83:18)" />
+          <div className="md:col-span-2 space-y-2">
+            {recognizedKey ? (
               <>
-                <ul className="list-disc ml-5">
-                  {inlineSuggestions.map((s, i) => (
-                    <li key={i}>
-                      <span className="font-medium">{s.ref}</span> — {s.why}
-                      {s.ask ? ` — Q: ${s.ask}` : ""}
-                    </li>
-                  ))}
-                </ul>
-                {extraCount > 0 && (
-                  <div className="text-sm opacity-70">
-                    +{extraCount} more (not shown here).
-                  </div>
+                {inlineSuggestions.length > 0 ? (
+                  <ul className="list-disc ml-5">
+                    {inlineSuggestions.map((s, i) => (
+                      <li key={i}>
+                        <span className="font-medium">{s.ref}</span> — {s.why}
+                        {s.ask ? ` — Q: ${s.ask}` : ""}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className="opacity-70">No suggestions found.</div>
                 )}
+                {extraCount > 0 && <div className="text-sm opacity-70">+{extraCount} more (not shown here).</div>}
               </>
+            ) : (
+              <div className="opacity-70">
+                Start typing a known scripture reference. Suggestions will appear once it’s recognized
+                (e.g., “Ps 83:18”, “Matt 6:9-10”, “Rev 21:4”).
+              </div>
             )}
           </div>
         </div>
       </Section>
 
-      {/* ───────────────────── Search by Concern / Topic (unchanged) ───────────────────── */}
       <Section title="Search by Concern or Topic">
         <form
+          id="topic-search-container"
           onSubmit={(e) => {
             e.preventDefault();
             setSubmitted(true);
@@ -1262,7 +1146,6 @@ function PageScriptureTool({ state, setState }) {
                 <div
                   key={opt}
                   className="px-3 py-2 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-800"
-                  onMouseDown={(e) => e.preventDefault()}
                   onClick={() => {
                     setQ(opt);
                     setSubmitted(true);
@@ -1274,9 +1157,7 @@ function PageScriptureTool({ state, setState }) {
               ))}
             </div>
           )}
-          <div className="mt-2 text-xs opacity-70">
-            Results are hidden until you search (min {MIN_CHARS} characters or pick a suggestion).
-          </div>
+          <div className="mt-2 text-xs opacity-70">Results are hidden until you search (min 2 characters or pick a suggestion).</div>
           <div className="mt-2">
             <Button type="submit" className="text-sm">
               Search
@@ -1284,29 +1165,21 @@ function PageScriptureTool({ state, setState }) {
           </div>
         </form>
 
-        {submitted && q.trim().length >= MIN_CHARS && (
+        {submitted && q.trim().length >= 2 && (
           <div className="grid md:grid-cols-2 gap-3 mt-3">
             {topics.length === 0 ? (
               <div className="opacity-70">No topics found for “{q}”.</div>
             ) : (
               topics.map((t) => (
-                <div
-                  key={t.topic}
-                  className="rounded-xl border p-3 border-neutral-200 dark:border-neutral-800"
-                >
+                <div key={t.topic} className="rounded-xl border p-3 border-neutral-200 dark:border-neutral-800">
                   <div className="font-semibold mb-1">{t.topic}</div>
                   <div className="text-sm">
-                    <span className="font-medium">Scriptures:</span>{" "}
-                    {Array.isArray(t.refs) ? t.refs.join(", ") : "—"}
+                    <span className="font-medium">Scriptures:</span> {Array.isArray(t.refs) ? t.refs.join(", ") : "—"}
                   </div>
                   {Array.isArray(t.questions) && t.questions.length > 0 && (
                     <div className="text-sm mt-1">
                       <span className="font-medium">Sample questions:</span>
-                      <ul className="list-disc ml-5">
-                        {t.questions.map((qq, i) => (
-                          <li key={i}>{qq}</li>
-                        ))}
-                      </ul>
+                      <ul className="list-disc ml-5">{t.questions.map((qq, i) => <li key={i}>{qq}</li>)}</ul>
                     </div>
                   )}
                 </div>
@@ -1316,11 +1189,9 @@ function PageScriptureTool({ state, setState }) {
         )}
       </Section>
 
-      {/* ───────────────────── Import (unchanged) ───────────────────── */}
       <Section title="Import Recommendations (JSON)">
         <div className="text-sm opacity-75 mb-2">
-          Paste a JSON object with <code>scriptureSuggest</code> and/or{" "}
-          <code>topicLibrary</code>.
+          Paste a JSON object with <code>scriptureSuggest</code> and/or <code>topicLibrary</code>.
         </div>
         <TextArea
           placeholder='{"scriptureSuggest":{"Ps 83:18":[{"ref":"Rev 21:3-4","why":"..."}]},"topicLibrary":[{"topic":"...","refs":["..."],"questions":["..."]}]}'
@@ -1335,7 +1206,9 @@ function PageScriptureTool({ state, setState }) {
   );
 }
 
-/* ------------------ Stats + App Shell ------------------ */
+/* =========================================================
+   Stats + App + Settings
+========================================================= */
 function Stats({ state }) {
   const today = todayISO();
   const todays = (state.visits || []).filter((v) => v.date === today);
@@ -1359,30 +1232,70 @@ const StatCard = ({ label, value }) => (
 const TABS = ["Home", "Territory", "Return Visits", "Bible Studies", "Scripture Tool"];
 
 export default function MinistryCompanion() {
-  const [state, setState] = useLocalState("mc_state_v1", SEED);
-  const [tab, setTab] = useLocalState("mc_tab", "Home");
-  const [showSplash, setShowSplash] = useState(true);
-
-  // ✅ FIXED: cleanup function so file closes properly
+  // Load + migrate once
+  const [state, setStateRaw] = useState(() => loadAndMigrate(SEED));
+  // Persist on every change
   useEffect(() => {
-    const t = setTimeout(() => setShowSplash(false), 1200);
+    localStorage.setItem(STORAGE_PRIMARY, JSON.stringify(state));
+  }, [state]);
+  const setState = (updater) => setStateRaw((s) => (typeof updater === "function" ? updater(s) : updater));
+
+  const [tab, setTab] = useState("Home");
+  const [showSplash, setShowSplash] = useState(true);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [importText, setImportText] = useState("");
+
+  useEffect(() => {
+    const t = setTimeout(() => setShowSplash(false), 1000);
     return () => clearTimeout(t);
   }, []);
 
+  // Backup / Restore helpers
+  const exportAll = () => {
+    copyToClipboard(JSON.stringify(state, null, 2));
+    alert("All Ministry Companion data copied to clipboard.");
+  };
+  const importAll = () => {
+    try {
+      const obj = JSON.parse(importText);
+      const merged = deepMergeDefaults(obj, SEED);
+      setState(merged);
+      localStorage.setItem(STORAGE_PRIMARY, JSON.stringify(merged));
+      alert("Data imported.");
+      setImportText("");
+      setSettingsOpen(false);
+    } catch {
+      alert("Invalid JSON.");
+    }
+  };
+  const clearWithBackup = () => {
+    const ok = window.confirm("This will clear the app data after copying a backup to your clipboard. Continue?");
+    if (!ok) return;
+    exportAll();
+    setState(SEED);
+    localStorage.setItem(STORAGE_PRIMARY, JSON.stringify(SEED));
+    alert("Data cleared. A backup JSON is in your clipboard.");
+  };
+
   const renderPage = () => {
     switch (tab) {
-      case "Home": return <PageHome state={state} setState={setState} />;
-      case "Territory": return <PageTerritory state={state} setState={setState} />;
-      case "Return Visits": return <PageReturnVisits state={state} setState={setState} />;
-      case "Bible Studies": return <PageStudies state={state} setState={setState} />;
-      case "Scripture Tool": return <PageScriptureTool state={state} setState={setState} />;
-      default: return null;
+      case "Home":
+        return <PageHome state={state} setState={setState} openSettings={() => setSettingsOpen(true)} />;
+      case "Territory":
+        return <PageTerritory state={state} setState={setState} />;
+      case "Return Visits":
+        return <PageReturnVisits state={state} setState={setState} />;
+      case "Bible Studies":
+        return <PageStudies state={state} setState={setState} />;
+      case "Scripture Tool":
+        return <PageScriptureTool state={state} setState={setState} />;
+      default:
+        return null;
     }
   };
 
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
-      {/* Splash */}
       {showSplash && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-neutral-950">
           <div className="text-center">
@@ -1392,16 +1305,16 @@ export default function MinistryCompanion() {
         </div>
       )}
 
-      {/* Header */}
+      {/* Mobile friendly header: title on its own row; scrollable tabs */}
       <header className="sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-neutral-950/70 border-b border-neutral-200/70 dark:border-neutral-800">
-        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="font-semibold">Ministry Companion</div>
-          <nav className="flex gap-2">
+        <div className="max-w-5xl mx-auto px-4 py-3">
+          <div className="text-center md:text-left font-semibold text-lg md:text-xl">Ministry Companion</div>
+          <nav className="mt-2 flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 no-scrollbar">
             {TABS.map((t) => (
               <button
                 key={t}
                 onClick={() => setTab(t)}
-                className={`px-3 py-1.5 rounded-xl border text-sm ${
+                className={`px-3 py-1.5 whitespace-nowrap rounded-xl border text-sm ${
                   tab === t
                     ? "bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900"
                     : "border-neutral-300 dark:border-neutral-700"
@@ -1418,6 +1331,35 @@ export default function MinistryCompanion() {
         <Stats state={state} />
         {renderPage()}
       </main>
+
+      {/* Settings (Backup/Restore) */}
+      <Modal open={settingsOpen} onClose={() => setSettingsOpen(false)} title="Settings • Backup & Restore">
+        <div className="space-y-4">
+          <Section title="Backup">
+            <div className="flex flex-wrap gap-2">
+              <Button onClick={exportAll} className="bg-blue-600 text-white">Copy All Data (JSON)</Button>
+            </div>
+          </Section>
+
+          <Section title="Restore">
+            <div className="text-sm opacity-75 mb-2">Paste data that was previously exported.</div>
+            <TextArea value={importText} onChange={(e) => setImportText(e.target.value)} placeholder='{"visits":[...],"returnVisits":[...],...}' />
+            <div className="mt-2">
+              <Button onClick={importAll}>Import</Button>
+            </div>
+          </Section>
+
+          <Section title="Danger zone">
+            <div className="text-sm opacity-75">Clears app data after copying a backup to your clipboard.</div>
+            <Button onClick={clearWithBackup} className="mt-2 border-red-500 text-red-600">Clear data (with backup)</Button>
+          </Section>
+        </div>
+      </Modal>
     </div>
   );
 }
+
+/* Optional: hide scrollbars for tab row (add in your CSS file)
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+*/
