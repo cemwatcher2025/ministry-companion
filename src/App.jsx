@@ -1,3 +1,4 @@
+// patched scripture-loader
 import React, { useEffect, useMemo, useState } from "react";
 
 /* =========================================================
