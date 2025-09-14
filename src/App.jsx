@@ -96,6 +96,68 @@ function buildNHText(state, nhOnly) {
 }
 
 /* =========================================================
+   Adapter: new graph JSON -> scriptureSuggest map
+   (reads /public/data/suggestions.json at app start)
+========================================================= */
+function adaptMinistryGraphToSuggest(raw) {
+  if (!raw || !Array.isArray(raw.nodes)) {
+    return { scriptureSuggest: {}, topicLibrary: [] };
+  }
+  const byId = new Map(raw.nodes.map(n => [String(n.id), n]));
+  const scriptureSuggest = {};
+
+  for (const node of raw.nodes) {
+    const fromScripture = (node.scripture || "").trim();
+    if (!fromScripture) continue;
+    if (!scriptureSuggest[fromScripture]) scriptureSuggest[fromScripture] = [];
+
+    // suggestions FROM current TO targets
+    if (Array.isArray(node.forwards)) {
+      for (const f of node.forwards) {
+        const t = byId.get(String(f.to));
+        if (!t || !t.scripture) continue;
+        scriptureSuggest[fromScripture].push({
+          ref: t.scripture.trim(),
+          why: "",
+          ask: f.bridgeQuestion || ""
+        });
+      }
+    }
+  }
+
+  // de-dupe per key by (ref, ask)
+  for (const k of Object.keys(scriptureSuggest)) {
+    const seen = new Set();
+    scriptureSuggest[k] = scriptureSuggest[k].filter(s => {
+      const key = `${s.ref}#${s.ask || ""}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
+  return { scriptureSuggest, topicLibrary: [] };
+}
+
+function mergeScriptureSuggest(base = {}, add = {}) {
+  const out = { ...base };
+  for (const k of Object.keys(add || {})) {
+    const a = Array.isArray(out[k]) ? out[k].slice() : [];
+    const b = Array.isArray(add[k]) ? add[k] : [];
+    const seen = new Set(a.map(s => `${s.ref}#${s.ask || ""}`));
+    for (const s of b) {
+      const key = `${s.ref}#${s.ask || ""}`;
+      if (!seen.has(key)) {
+        a.push(s);
+        seen.add(key);
+      }
+    }
+    out[k] = a;
+  }
+  return out;
+}
+
+/* =========================================================
    Seed Data
 ========================================================= */
 const SCRIPTURE_SUGGEST_STARTER = {
@@ -858,8 +920,7 @@ function PageReturnVisits({ state, setState }) {
               if (list.length === 0) {
                 return (
                   <div className="opacity-70">
-                    No suggestions found for <b>{rv.lastScripture || "(none)"}</b>. Try “Ps 83:18” vs “Psalm 83:18”, or
-                    import more mappings in the Scripture Tool.
+                    No suggestions found for <b>{rv.lastScripture || "(none)"}</b>. Try “Ps 83:18” vs “Psalm 83:18”.
                   </div>
                 );
               }
@@ -1020,7 +1081,7 @@ function PageStudies({ state, setState }) {
   );
 }
 
-function PageScriptureTool({ state, setState }) {
+function PageScriptureTool({ state }) {
   const MAX_INLINE = 5;
   const TYPEAHEAD_CAP = 12;
   const MIN_CHARS = 2;
@@ -1086,8 +1147,8 @@ function PageScriptureTool({ state, setState }) {
                   <ul className="list-disc ml-5">
                     {inlineSuggestions.map((s, i) => (
                       <li key={i}>
-                        <span className="font-medium">{s.ref}</span> — {s.why}
-                        {s.ask ? ` — Q: ${s.ask}` : ""}
+                        <span className="font-medium">{s.ref}</span> {s.why ? <>— {s.why}</> : null}
+                        {s.ask ? <> — Q: {s.ask}</> : null}
                       </li>
                     ))}
                   </ul>
@@ -1221,6 +1282,27 @@ export default function MinistryCompanion() {
     return () => clearTimeout(t);
   }, []);
 
+  // NEW: Load scripture graph from /public/data/suggestions.json
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/data/suggestions.json")
+      .then(r => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then(raw => {
+        if (cancelled) return;
+        const { scriptureSuggest } = adaptMinistryGraphToSuggest(raw);
+        setState((s) => ({
+          ...s,
+          scriptureSuggest: mergeScriptureSuggest(s.scriptureSuggest || {}, scriptureSuggest),
+        }));
+      })
+      .catch(err => console.error("Failed to load /data/suggestions.json", err));
+    return () => { cancelled = true; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // Backup / Restore helpers
   const exportAll = () => {
     copyToClipboard(JSON.stringify(state, null, 2));
@@ -1259,7 +1341,7 @@ export default function MinistryCompanion() {
       case "Bible Studies":
         return <PageStudies state={state} setState={setState} />;
       case "Scripture Tool":
-        return <PageScriptureTool state={state} setState={setState} />;
+        return <PageScriptureTool state={state} />;
       default:
         return null;
     }
