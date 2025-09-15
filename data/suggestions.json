@@ -1,0 +1,3218 @@
+{
+  "version": "1.0.0",
+  "generated": "by-chatgpt",
+  "nodes": [
+    {
+      "id": "Matt24_3_7_8_Luke21_10_11_2Tim3_1_5",
+      "scripture": "Matthew 24:3,7,8; Luke 21:10–11; 2 Timothy 3:1–5",
+      "entryQuestion": "Do current events and attitudes suggest a major change is near?",
+      "forwards": [
+        {
+          "to": "Dan2_44",
+          "bridgeQuestion": "What government will fix things?"
+        },
+        {
+          "to": "Luke21_28",
+          "bridgeQuestion": "If these are the signs, what should our attitude be?"
+        },
+        {
+          "to": "Ps104_5_Eccl1_4",
+          "bridgeQuestion": "If change is coming, will the earth itself be destroyed or endure?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "2Tim3_1_5",
+          "bridgeQuestion": "Do you see the same pattern in Jesus’ sign?"
+        }
+      ],
+      "tags": [
+        "FUTURE",
+        "KINGDOM",
+        "authority",
+        "environment",
+        "everlasting life",
+        "future",
+        "good news",
+        "government",
+        "health",
+        "hope",
+        "kingdom",
+        "last days",
+        "messiah",
+        "paradise",
+        "preaching",
+        "prophecy",
+        "rule",
+        "signs"
+      ]
+    },
+    {
+      "id": "Ps104_5_Eccl1_4",
+      "scripture": "Psalm 104:5; Ecclesiastes 1:4",
+      "entryQuestion": "If the earth will never be destroyed, what is God’s purpose for it?",
+      "forwards": [
+        {
+          "to": "Isa35_1_2_Rev11_18",
+          "bridgeQuestion": "How will the environment be restored?"
+        },
+        {
+          "to": "Ps37_29_Matt5_5",
+          "bridgeQuestion": "Who will live here, and for how long?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Matt24_3_7_8_Luke21_10_11_2Tim3_1_5",
+          "bridgeQuestion": "If change is coming, will the earth itself be destroyed or endure?"
+        }
+      ],
+      "tags": [
+        "FUTURE",
+        "environment",
+        "everlasting life",
+        "future",
+        "health",
+        "hope",
+        "last days",
+        "paradise",
+        "prophecy",
+        "signs"
+      ]
+    },
+    {
+      "id": "Isa35_1_2_Rev11_18",
+      "scripture": "Isaiah 35:1–2; Revelation 11:18",
+      "entryQuestion": "How does God feel about the earth’s environment?",
+      "forwards": [
+        {
+          "to": "Dan2_44",
+          "bridgeQuestion": "Who will administrate this restoration?"
+        },
+        {
+          "to": "Isa33_24_35_5_6",
+          "bridgeQuestion": "What about human health?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Ps104_5_Eccl1_4",
+          "bridgeQuestion": "How will the environment be restored?"
+        }
+      ],
+      "tags": [
+        "FUTURE",
+        "KINGDOM",
+        "authority",
+        "environment",
+        "everlasting life",
+        "future",
+        "good news",
+        "government",
+        "health",
+        "hope",
+        "kingdom",
+        "last days",
+        "messiah",
+        "paradise",
+        "preaching",
+        "prophecy",
+        "rule",
+        "signs"
+      ]
+    },
+    {
+      "id": "Isa33_24_35_5_6",
+      "scripture": "Isaiah 33:24; 35:5–6",
+      "entryQuestion": "What would life be like if no one said “I am sick”?",
+      "forwards": [
+        {
+          "to": "Isa11_6_9_Mic4_4",
+          "bridgeQuestion": "What will day-to-day peace look like?"
+        },
+        {
+          "to": "Ps37_29_Matt5_5",
+          "bridgeQuestion": "Is lasting life on earth really promised?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Isa35_1_2_Rev11_18",
+          "bridgeQuestion": "What about human health?"
+        }
+      ],
+      "tags": [
+        "FUTURE",
+        "environment",
+        "everlasting life",
+        "future",
+        "health",
+        "hope",
+        "last days",
+        "paradise",
+        "prophecy",
+        "signs"
+      ]
+    },
+    {
+      "id": "Ps37_29_Matt5_5",
+      "scripture": "Psalm 37:29; Matthew 5:5",
+      "entryQuestion": "Can ordinary people really live forever on the earth?",
+      "forwards": [
+        {
+          "to": "Dan2_44",
+          "bridgeQuestion": "What government guarantees that future?"
+        },
+        {
+          "to": "Isa65_21_23",
+          "bridgeQuestion": "What will everyday life be like then?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Acts24_15",
+          "bridgeQuestion": "Where will they live?"
+        },
+        {
+          "from": "Acts24_15_John5_28_29",
+          "bridgeQuestion": "Where will they live?"
+        },
+        {
+          "from": "Isa25_8_Rev21_4",
+          "bridgeQuestion": "What life awaits people then?"
+        },
+        {
+          "from": "Isa33_24_35_5_6",
+          "bridgeQuestion": "Is lasting life on earth really promised?"
+        },
+        {
+          "from": "Isa65_21_23_Ps37_10_11",
+          "bridgeQuestion": "Will the righteous live forever on earth?"
+        },
+        {
+          "from": "Ps104_5_Eccl1_4",
+          "bridgeQuestion": "Who will live here, and for how long?"
+        }
+      ],
+      "tags": [
+        "FUTURE",
+        "KINGDOM",
+        "authority",
+        "environment",
+        "everlasting life",
+        "future",
+        "good news",
+        "government",
+        "health",
+        "hope",
+        "kingdom",
+        "last days",
+        "messiah",
+        "paradise",
+        "preaching",
+        "prophecy",
+        "rule",
+        "signs"
+      ]
+    },
+    {
+      "id": "Isa11_6_9_Mic4_4",
+      "scripture": "Isaiah 11:6–9; Micah 4:4",
+      "entryQuestion": "What kind of peace will God’s rule bring?",
+      "forwards": [
+        {
+          "to": "Isa9_6_7",
+          "bridgeQuestion": "Who is the ruler who brings this peace?"
+        },
+        {
+          "to": "Ps72_12_14",
+          "bridgeQuestion": "How will the vulnerable be treated?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Isa33_24_35_5_6",
+          "bridgeQuestion": "What will day-to-day peace look like?"
+        }
+      ],
+      "tags": [
+        "FUTURE",
+        "KINGDOM",
+        "authority",
+        "environment",
+        "everlasting life",
+        "future",
+        "good news",
+        "government",
+        "health",
+        "hope",
+        "kingdom",
+        "last days",
+        "messiah",
+        "paradise",
+        "preaching",
+        "prophecy",
+        "rule",
+        "signs"
+      ]
+    },
+    {
+      "id": "Isa9_6_7",
+      "scripture": "Isaiah 9:6–7",
+      "entryQuestion": "What kind of ruler will the Messiah be?",
+      "forwards": [
+        {
+          "to": "Luke4_43",
+          "bridgeQuestion": "What was Jesus’ mission?"
+        },
+        {
+          "to": "Matt28_18",
+          "bridgeQuestion": "What authority has he received?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Dan2_44_Dan7_13_14_Matt6_9_10_Rev11_15",
+          "bridgeQuestion": "What kind of ruler is the Messiah?"
+        },
+        {
+          "from": "Isa11_6_9_Mic4_4",
+          "bridgeQuestion": "Who is the ruler who brings this peace?"
+        }
+      ],
+      "tags": [
+        "JESUS",
+        "KINGDOM",
+        "authority",
+        "good news",
+        "government",
+        "jesus",
+        "kingdom",
+        "messiah",
+        "mission",
+        "preaching",
+        "ransom",
+        "rule",
+        "son of god",
+        "teacher"
+      ]
+    },
+    {
+      "id": "Luke21_28",
+      "scripture": "Luke 21:28",
+      "entryQuestion": "What should faithful people do as deliverance approaches?",
+      "forwards": [
+        {
+          "to": "2Tim3_1_5",
+          "bridgeQuestion": "How do the 'last days' traits confirm the timing?"
+        },
+        {
+          "to": "Heb10_24_25",
+          "bridgeQuestion": "Why gather together as the day draws near?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "2Tim3_1_5",
+          "bridgeQuestion": "How should we respond as deliverance nears?"
+        },
+        {
+          "from": "Heb10_24_25",
+          "bridgeQuestion": "What are we drawing near to?"
+        },
+        {
+          "from": "Matt24_14",
+          "bridgeQuestion": "What does the global preaching work signify about the time?"
+        },
+        {
+          "from": "Matt24_3_7_8_Luke21_10_11_2Tim3_1_5",
+          "bridgeQuestion": "If these are the signs, what should our attitude be?"
+        }
+      ],
+      "tags": [
+        "BIBLE_VALUE",
+        "FUTURE",
+        "apply",
+        "beneficial",
+        "comfort",
+        "congregation",
+        "environment",
+        "everlasting life",
+        "future",
+        "health",
+        "hope",
+        "lamp",
+        "last days",
+        "paradise",
+        "prophecy",
+        "qualities",
+        "scripture",
+        "signs"
+      ]
+    },
+    {
+      "id": "2Tim3_1_5",
+      "scripture": "2 Timothy 3:1–5",
+      "entryQuestion": "How do the 'critical times' describe our day?",
+      "forwards": [
+        {
+          "to": "Luke21_28",
+          "bridgeQuestion": "How should we respond as deliverance nears?"
+        },
+        {
+          "to": "Matt24_3_7_8_Luke21_10_11_2Tim3_1_5",
+          "bridgeQuestion": "Do you see the same pattern in Jesus’ sign?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Luke21_28",
+          "bridgeQuestion": "How do the 'last days' traits confirm the timing?"
+        },
+        {
+          "from": "Luke21_28_again",
+          "bridgeQuestion": "Do current conditions match the foretold 'last days'?"
+        }
+      ],
+      "tags": [
+        "FUTURE",
+        "environment",
+        "everlasting life",
+        "future",
+        "health",
+        "hope",
+        "last days",
+        "paradise",
+        "prophecy",
+        "signs"
+      ]
+    },
+    {
+      "id": "Eph5_33_Col3_19",
+      "scripture": "Ephesians 5:33; Colossians 3:19",
+      "entryQuestion": "Why is love essential for a successful marriage?",
+      "forwards": [
+        {
+          "to": "Col3_18",
+          "bridgeQuestion": "How does deep respect balance love in marriage?"
+        },
+        {
+          "to": "Matt19_4_6_Heb13_4",
+          "bridgeQuestion": "What keeps the union loyal and honorable?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Col3_18",
+          "bridgeQuestion": "How does mutual love make respect natural?"
+        },
+        {
+          "from": "Mal2_16_Matt19_4_6_9_Heb13_4",
+          "bridgeQuestion": "What positive model replaces treachery?"
+        },
+        {
+          "from": "Matt19_4_6_Heb13_4",
+          "bridgeQuestion": "How does love and gentleness guard the bond?"
+        }
+      ],
+      "tags": [
+        "FAMILY",
+        "children",
+        "family",
+        "home",
+        "husband",
+        "loyalty",
+        "marriage",
+        "parents",
+        "respect",
+        "wife"
+      ]
+    },
+    {
+      "id": "Col3_18",
+      "scripture": "Colossians 3:18",
+      "entryQuestion": "What does 'deep respect' look like in a healthy marriage?",
+      "forwards": [
+        {
+          "to": "Eph5_33_Col3_19",
+          "bridgeQuestion": "How does mutual love make respect natural?"
+        },
+        {
+          "to": "Mal2_16_Matt19_4_6_9_Heb13_4",
+          "bridgeQuestion": "Why is loyalty so critical to God?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Eph5_33_Col3_19",
+          "bridgeQuestion": "How does deep respect balance love in marriage?"
+        }
+      ],
+      "tags": [
+        "FAMILY",
+        "children",
+        "family",
+        "home",
+        "husband",
+        "loyalty",
+        "marriage",
+        "parents",
+        "respect",
+        "wife"
+      ]
+    },
+    {
+      "id": "Mal2_16_Matt19_4_6_9_Heb13_4",
+      "scripture": "Malachi 2:16; Matthew 19:4–6,9; Hebrews 13:4",
+      "entryQuestion": "Why does God hate treachery in marriage?",
+      "forwards": [
+        {
+          "to": "Eph5_33_Col3_19",
+          "bridgeQuestion": "What positive model replaces treachery?"
+        },
+        {
+          "to": "Prov1_8_9_Eph6_1_3",
+          "bridgeQuestion": "How does a strong marriage bless children?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Col3_18",
+          "bridgeQuestion": "Why is loyalty so critical to God?"
+        },
+        {
+          "from": "Matt19_4_6_Heb13_4",
+          "bridgeQuestion": "Why does God hate treachery?"
+        }
+      ],
+      "tags": [
+        "FAMILY",
+        "children",
+        "family",
+        "home",
+        "husband",
+        "loyalty",
+        "marriage",
+        "parents",
+        "respect",
+        "wife"
+      ]
+    },
+    {
+      "id": "Matt19_4_6_Heb13_4",
+      "scripture": "Matthew 19:4–6; Hebrews 13:4",
+      "entryQuestion": "What does Jesus teach about the permanence and honor of marriage?",
+      "forwards": [
+        {
+          "to": "Eph5_33_Col3_19",
+          "bridgeQuestion": "How does love and gentleness guard the bond?"
+        },
+        {
+          "to": "Mal2_16_Matt19_4_6_9_Heb13_4",
+          "bridgeQuestion": "Why does God hate treachery?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Eph5_33_Col3_19",
+          "bridgeQuestion": "What keeps the union loyal and honorable?"
+        }
+      ],
+      "tags": [
+        "FAMILY",
+        "children",
+        "family",
+        "home",
+        "husband",
+        "loyalty",
+        "marriage",
+        "parents",
+        "respect",
+        "wife"
+      ]
+    },
+    {
+      "id": "Prov1_8_9_Eph6_1_3",
+      "scripture": "Proverbs 1:8–9; Ephesians 6:1–3",
+      "entryQuestion": "How does respecting and obeying parents help children succeed?",
+      "forwards": [
+        {
+          "to": "Deut6_6_7",
+          "bridgeQuestion": "How can families make spiritual talks a daily habit?"
+        },
+        {
+          "to": "Eph6_4",
+          "bridgeQuestion": "How should parents balance discipline and affection?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Col3_21",
+          "bridgeQuestion": "How does parental guidance lead to success?"
+        },
+        {
+          "from": "Deut6_6_7",
+          "bridgeQuestion": "How does this help children succeed?"
+        },
+        {
+          "from": "Eph6_4",
+          "bridgeQuestion": "How does balanced parenting support obedience?"
+        },
+        {
+          "from": "Mal2_16_Matt19_4_6_9_Heb13_4",
+          "bridgeQuestion": "How does a strong marriage bless children?"
+        }
+      ],
+      "tags": [
+        "FAMILY",
+        "children",
+        "family",
+        "home",
+        "husband",
+        "loyalty",
+        "marriage",
+        "parents",
+        "respect",
+        "wife"
+      ]
+    },
+    {
+      "id": "Eph6_4",
+      "scripture": "Ephesians 6:4",
+      "entryQuestion": "How should parents bring up children 'in the discipline and admonition of Jehovah'?",
+      "forwards": [
+        {
+          "to": "Col3_21",
+          "bridgeQuestion": "Why avoid exasperating children?"
+        },
+        {
+          "to": "Prov1_8_9_Eph6_1_3",
+          "bridgeQuestion": "How does balanced parenting support obedience?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Col3_21",
+          "bridgeQuestion": "What does balanced discipline look like?"
+        },
+        {
+          "from": "Prov1_8_9_Eph6_1_3",
+          "bridgeQuestion": "How should parents balance discipline and affection?"
+        }
+      ],
+      "tags": [
+        "FAMILY",
+        "children",
+        "family",
+        "home",
+        "husband",
+        "loyalty",
+        "marriage",
+        "parents",
+        "respect",
+        "wife"
+      ]
+    },
+    {
+      "id": "Col3_21",
+      "scripture": "Colossians 3:21",
+      "entryQuestion": "Why should fathers avoid exasperating their children?",
+      "forwards": [
+        {
+          "to": "Eph6_4",
+          "bridgeQuestion": "What does balanced discipline look like?"
+        },
+        {
+          "to": "Prov1_8_9_Eph6_1_3",
+          "bridgeQuestion": "How does parental guidance lead to success?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Eph6_4",
+          "bridgeQuestion": "Why avoid exasperating children?"
+        }
+      ],
+      "tags": [
+        "FAMILY",
+        "children",
+        "family",
+        "home",
+        "husband",
+        "loyalty",
+        "marriage",
+        "parents",
+        "respect",
+        "wife"
+      ]
+    },
+    {
+      "id": "Deut6_6_7",
+      "scripture": "Deuteronomy 6:6–7",
+      "entryQuestion": "How can families keep spiritual conversation natural and daily?",
+      "forwards": [
+        {
+          "to": "Col3_12_14",
+          "bridgeQuestion": "What qualities should family members put on?"
+        },
+        {
+          "to": "Prov1_8_9_Eph6_1_3",
+          "bridgeQuestion": "How does this help children succeed?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Prov1_8_9_Eph6_1_3",
+          "bridgeQuestion": "How can families make spiritual talks a daily habit?"
+        }
+      ],
+      "tags": [
+        "BIBLE_VALUE",
+        "FAMILY",
+        "apply",
+        "beneficial",
+        "children",
+        "comfort",
+        "congregation",
+        "family",
+        "home",
+        "husband",
+        "lamp",
+        "loyalty",
+        "marriage",
+        "parents",
+        "qualities",
+        "respect",
+        "scripture",
+        "wife"
+      ]
+    },
+    {
+      "id": "Ps83_18_Jer10_10",
+      "scripture": "Psalm 83:18; Jeremiah 10:10",
+      "entryQuestion": "Did you know the Bible reveals God’s personal name?",
+      "forwards": [
+        {
+          "to": "Ex3_15_Isa42_8",
+          "bridgeQuestion": "Why does God want his name remembered and honored?"
+        },
+        {
+          "to": "Rom10_13_14",
+          "bridgeQuestion": "Why does using his name matter in worship?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Rom10_13_14",
+          "bridgeQuestion": "Which name should be made known?"
+        }
+      ],
+      "tags": [
+        "GOD",
+        "bible",
+        "communication",
+        "draw close",
+        "god",
+        "impartial",
+        "jehovah",
+        "name",
+        "personality"
+      ]
+    },
+    {
+      "id": "Ex3_15_Isa42_8",
+      "scripture": "Exodus 3:15; Isaiah 42:8",
+      "entryQuestion": "Why does Jehovah emphasize his name forever?",
+      "forwards": [
+        {
+          "to": "Jas4_8",
+          "bridgeQuestion": "How do we draw close to a personal God?"
+        },
+        {
+          "to": "OneJohn4_8",
+          "bridgeQuestion": "What does his name tell us about his personality?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Ps83_18_Jer10_10",
+          "bridgeQuestion": "Why does God want his name remembered and honored?"
+        }
+      ],
+      "tags": [
+        "GOD",
+        "bible",
+        "communication",
+        "draw close",
+        "god",
+        "impartial",
+        "jehovah",
+        "name",
+        "personality"
+      ]
+    },
+    {
+      "id": "TwoTim3_16_17_TwoPet1_20_21",
+      "scripture": "2 Timothy 3:16–17; 2 Peter 1:20–21",
+      "entryQuestion": "How does God communicate with us today?",
+      "forwards": [
+        {
+          "to": "Isa46_10",
+          "bridgeQuestion": "Does fulfilled prophecy confirm inspiration?"
+        },
+        {
+          "to": "Ps119_105",
+          "bridgeQuestion": "How does Scripture guide practical decisions?"
+        },
+        {
+          "to": "Rom15_4",
+          "bridgeQuestion": "How do the Scriptures give comfort and hope?"
+        }
+      ],
+      "backlinks": [],
+      "tags": [
+        "BIBLE_VALUE",
+        "GOD",
+        "apply",
+        "beneficial",
+        "bible",
+        "comfort",
+        "communication",
+        "congregation",
+        "draw close",
+        "god",
+        "impartial",
+        "jehovah",
+        "lamp",
+        "name",
+        "personality",
+        "qualities",
+        "scripture"
+      ]
+    },
+    {
+      "id": "Deut10_17_Acts10_34_35",
+      "scripture": "Deuteronomy 10:17; Acts 10:34–35",
+      "entryQuestion": "How do we know God is fair and unbiased?",
+      "forwards": [
+        {
+          "to": "John3_16",
+          "bridgeQuestion": "How does his impartial love reach everyone?"
+        },
+        {
+          "to": "Mic4_3",
+          "bridgeQuestion": "How will his justice bring peace?"
+        }
+      ],
+      "backlinks": [],
+      "tags": [
+        "GOD",
+        "bible",
+        "communication",
+        "draw close",
+        "god",
+        "impartial",
+        "jehovah",
+        "name",
+        "personality"
+      ]
+    },
+    {
+      "id": "Ps46_1_Ps145_18_19",
+      "scripture": "Psalm 46:1; 145:18–19",
+      "entryQuestion": "In what ways does God want to help us personally?",
+      "forwards": [
+        {
+          "to": "OnePet5_7",
+          "bridgeQuestion": "How do we cast anxieties on him?"
+        },
+        {
+          "to": "Ps62_8_Ps65_2",
+          "bridgeQuestion": "Why does he invite prayer?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Phil4_6_7",
+          "bridgeQuestion": "How does God prove to be a refuge?"
+        }
+      ],
+      "tags": [
+        "GOD",
+        "PRAYER",
+        "ask seek knock",
+        "bible",
+        "cast anxiety",
+        "communication",
+        "draw close",
+        "god",
+        "impartial",
+        "jehovah",
+        "model prayer",
+        "name",
+        "personality",
+        "prayer",
+        "worship"
+      ]
+    },
+    {
+      "id": "Ps62_8_Ps65_2_OnePet5_7",
+      "scripture": "Psalm 62:8; 65:2; 1 Peter 5:7",
+      "entryQuestion": "Why does God want us to pray to him?",
+      "forwards": [
+        {
+          "to": "Matt6_7_13_Luke11_1_4",
+          "bridgeQuestion": "What should we pray for, and how?"
+        },
+        {
+          "to": "Matt7_7_8_OneThess5_17",
+          "bridgeQuestion": "How often should we pray and what results?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Jas4_8",
+          "bridgeQuestion": "How do we pour out our heart to him?"
+        },
+        {
+          "from": "OnePet5_7",
+          "bridgeQuestion": "How do we pour out our heart to him in prayer?"
+        },
+        {
+          "from": "Phil4_6_7",
+          "bridgeQuestion": "How do we pour out our heart to God?"
+        },
+        {
+          "from": "Ps145_18_19",
+          "bridgeQuestion": "Why does he invite us to pour out our heart?"
+        }
+      ],
+      "tags": [
+        "PRAYER",
+        "ask seek knock",
+        "cast anxiety",
+        "model prayer",
+        "prayer",
+        "worship"
+      ]
+    },
+    {
+      "id": "Matt6_7_13_Luke11_1_4",
+      "scripture": "Matthew 6:7–13; Luke 11:1–4",
+      "entryQuestion": "What does Jesus’ model prayer teach us to prioritize?",
+      "forwards": [
+        {
+          "to": "John17_3",
+          "bridgeQuestion": "How is knowing God part of prayer’s goal?"
+        },
+        {
+          "to": "Matt6_9_10",
+          "bridgeQuestion": "Why is God’s Kingdom first?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Ps62_8_Ps65_2",
+          "bridgeQuestion": "How did Jesus teach us to pray?"
+        },
+        {
+          "from": "Ps62_8_Ps65_2_OnePet5_7",
+          "bridgeQuestion": "What should we pray for, and how?"
+        }
+      ],
+      "tags": [
+        "GOD",
+        "KINGDOM",
+        "PRAYER",
+        "ask seek knock",
+        "authority",
+        "bible",
+        "cast anxiety",
+        "communication",
+        "draw close",
+        "god",
+        "good news",
+        "government",
+        "impartial",
+        "jehovah",
+        "kingdom",
+        "messiah",
+        "model prayer",
+        "name",
+        "personality",
+        "prayer",
+        "preaching",
+        "rule",
+        "worship"
+      ]
+    },
+    {
+      "id": "Matt6_9_10",
+      "scripture": "Matthew 6:9–10",
+      "entryQuestion": "What are we asking for when we pray 'Your Kingdom come'?",
+      "forwards": [
+        {
+          "to": "Dan2_44",
+          "bridgeQuestion": "What will that Kingdom do for the earth?"
+        },
+        {
+          "to": "Rev11_15",
+          "bridgeQuestion": "How will heavenly rulership change things on earth?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Isa65_21_23",
+          "bridgeQuestion": "Who makes this possible?"
+        },
+        {
+          "from": "John16_23",
+          "bridgeQuestion": "How did Jesus teach us to address God?"
+        },
+        {
+          "from": "John17_3",
+          "bridgeQuestion": "How does knowing God shape our priorities in prayer?"
+        },
+        {
+          "from": "Luke4_43",
+          "bridgeQuestion": "What are we asking for in the Lord’s Prayer?"
+        },
+        {
+          "from": "Matt6_7_13_Luke11_1_4",
+          "bridgeQuestion": "Why is God’s Kingdom first?"
+        }
+      ],
+      "tags": [
+        "KINGDOM",
+        "PRAYER",
+        "ask seek knock",
+        "authority",
+        "cast anxiety",
+        "good news",
+        "government",
+        "kingdom",
+        "messiah",
+        "model prayer",
+        "prayer",
+        "preaching",
+        "rule",
+        "worship"
+      ]
+    },
+    {
+      "id": "Matt7_7_8_OneThess5_17",
+      "scripture": "Matthew 7:7–8; 1 Thessalonians 5:17",
+      "entryQuestion": "What happens when we persist in prayer?",
+      "forwards": [
+        {
+          "to": "Phil4_6_7",
+          "bridgeQuestion": "What peace does prayer bring?"
+        },
+        {
+          "to": "Ps145_18_19",
+          "bridgeQuestion": "How does Jehovah respond to sincere calls?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Ps62_8_Ps65_2_OnePet5_7",
+          "bridgeQuestion": "How often should we pray and what results?"
+        }
+      ],
+      "tags": [
+        "PRAYER",
+        "ask seek knock",
+        "cast anxiety",
+        "model prayer",
+        "prayer",
+        "worship"
+      ]
+    },
+    {
+      "id": "Phil4_6_7",
+      "scripture": "Philippians 4:6–7",
+      "entryQuestion": "How does prayer guard our hearts and minds?",
+      "forwards": [
+        {
+          "to": "Ps46_1_Ps145_18_19",
+          "bridgeQuestion": "How does God prove to be a refuge?"
+        },
+        {
+          "to": "Ps62_8_Ps65_2_OnePet5_7",
+          "bridgeQuestion": "How do we pour out our heart to God?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Matt7_7_8_OneThess5_17",
+          "bridgeQuestion": "What peace does prayer bring?"
+        },
+        {
+          "from": "OnePet5_7",
+          "bridgeQuestion": "What peace does God give in return?"
+        },
+        {
+          "from": "Ps145_18_19",
+          "bridgeQuestion": "How does he give peace to those who pray?"
+        }
+      ],
+      "tags": [
+        "PRAYER",
+        "ask seek knock",
+        "cast anxiety",
+        "model prayer",
+        "prayer",
+        "worship"
+      ]
+    },
+    {
+      "id": "Matt16_16_John3_16_OneJohn4_15",
+      "scripture": "Matthew 16:16; John 3:16; 1 John 4:15",
+      "entryQuestion": "Who is Jesus, and why did God send his Son?",
+      "forwards": [
+        {
+          "to": "John5_28_29",
+          "bridgeQuestion": "What future does the ransom guarantee?"
+        },
+        {
+          "to": "Matt20_28",
+          "bridgeQuestion": "What is the ransom, and why do we need it?"
+        },
+        {
+          "to": "Rom5_8",
+          "bridgeQuestion": "How does his death prove God’s love?"
+        }
+      ],
+      "backlinks": [],
+      "tags": [
+        "DEATH",
+        "JESUS",
+        "RANSOM",
+        "afterlife",
+        "authority",
+        "death",
+        "grave",
+        "hope",
+        "jesus",
+        "mission",
+        "ransom",
+        "resurrection",
+        "sleep",
+        "son of god",
+        "teacher"
+      ]
+    },
+    {
+      "id": "Matt20_28",
+      "scripture": "Matthew 20:28",
+      "entryQuestion": "Why did Jesus give his life as a ransom?",
+      "forwards": [
+        {
+          "to": "OnePet2_24",
+          "bridgeQuestion": "How does his sacrifice remove sins?"
+        },
+        {
+          "to": "Rom5_8",
+          "bridgeQuestion": "How does this show God’s love for us?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Matt16_16_John3_16_OneJohn4_15",
+          "bridgeQuestion": "What is the ransom, and why do we need it?"
+        }
+      ],
+      "tags": [
+        "JESUS",
+        "RANSOM",
+        "authority",
+        "jesus",
+        "mission",
+        "ransom",
+        "son of god",
+        "teacher"
+      ]
+    },
+    {
+      "id": "Rom5_8",
+      "scripture": "Romans 5:8",
+      "entryQuestion": "How does Christ’s death show God’s love while we were sinners?",
+      "forwards": [
+        {
+          "to": "John17_3",
+          "bridgeQuestion": "How do we respond in appreciation?"
+        },
+        {
+          "to": "OneJohn1_9",
+          "bridgeQuestion": "How do we seek forgiveness and cleansing from sin?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Matt16_16_John3_16_OneJohn4_15",
+          "bridgeQuestion": "How does his death prove God’s love?"
+        },
+        {
+          "from": "Matt20_28",
+          "bridgeQuestion": "How does this show God’s love for us?"
+        }
+      ],
+      "tags": [
+        "JESUS",
+        "RANSOM",
+        "authority",
+        "jesus",
+        "mission",
+        "ransom",
+        "son of god",
+        "teacher"
+      ]
+    },
+    {
+      "id": "OnePet2_24",
+      "scripture": "1 Peter 2:24",
+      "entryQuestion": "What does it mean that Jesus bore our sins on the stake?",
+      "forwards": [
+        {
+          "to": "Col3_12_14",
+          "bridgeQuestion": "What change should forgiven people make?"
+        },
+        {
+          "to": "OneCor15_26",
+          "bridgeQuestion": "How does his victory affect death itself?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Matt20_28",
+          "bridgeQuestion": "How does his sacrifice remove sins?"
+        }
+      ],
+      "tags": [
+        "BIBLE_VALUE",
+        "JESUS",
+        "RANSOM",
+        "apply",
+        "authority",
+        "beneficial",
+        "comfort",
+        "congregation",
+        "jesus",
+        "lamp",
+        "mission",
+        "qualities",
+        "ransom",
+        "scripture",
+        "son of god",
+        "teacher"
+      ]
+    },
+    {
+      "id": "John14_28_OneCor11_3",
+      "scripture": "John 14:28; 1 Corinthians 11:3",
+      "entryQuestion": "Why did Jesus say 'the Father is greater than I am'?",
+      "forwards": [
+        {
+          "to": "John16_23",
+          "bridgeQuestion": "How does this affect our prayers?"
+        },
+        {
+          "to": "OneCor15_27_28",
+          "bridgeQuestion": "How is the Son subject to God in the end?"
+        }
+      ],
+      "backlinks": [],
+      "tags": [
+        "GOD",
+        "JESUS",
+        "authority",
+        "bible",
+        "communication",
+        "draw close",
+        "god",
+        "impartial",
+        "jehovah",
+        "jesus",
+        "mission",
+        "name",
+        "personality",
+        "ransom",
+        "son of god",
+        "teacher"
+      ]
+    },
+    {
+      "id": "OneCor15_27_28",
+      "scripture": "1 Corinthians 15:27–28",
+      "entryQuestion": "How will the Son be subject to God when all things are brought into subjection?",
+      "forwards": [
+        {
+          "to": "John16_23",
+          "bridgeQuestion": "How should we direct our prayers?"
+        },
+        {
+          "to": "Matt28_18",
+          "bridgeQuestion": "What authority has the resurrected Jesus received?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "John14_28_OneCor11_3",
+          "bridgeQuestion": "How is the Son subject to God in the end?"
+        }
+      ],
+      "tags": [
+        "JESUS",
+        "KINGDOM",
+        "authority",
+        "good news",
+        "government",
+        "jesus",
+        "kingdom",
+        "messiah",
+        "mission",
+        "preaching",
+        "ransom",
+        "rule",
+        "son of god",
+        "teacher"
+      ]
+    },
+    {
+      "id": "John16_23",
+      "scripture": "John 16:23",
+      "entryQuestion": "Why do we ask the Father in Jesus’ name?",
+      "forwards": [
+        {
+          "to": "John17_3",
+          "bridgeQuestion": "How does prayer deepen our knowledge of God and Christ?"
+        },
+        {
+          "to": "Matt6_9_10",
+          "bridgeQuestion": "How did Jesus teach us to address God?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "John14_28_OneCor11_3",
+          "bridgeQuestion": "How does this affect our prayers?"
+        },
+        {
+          "from": "OneCor15_27_28",
+          "bridgeQuestion": "How should we direct our prayers?"
+        }
+      ],
+      "tags": [
+        "GOD",
+        "JESUS",
+        "PRAYER",
+        "ask seek knock",
+        "authority",
+        "bible",
+        "cast anxiety",
+        "communication",
+        "draw close",
+        "god",
+        "impartial",
+        "jehovah",
+        "jesus",
+        "mission",
+        "model prayer",
+        "name",
+        "personality",
+        "prayer",
+        "ransom",
+        "son of god",
+        "teacher",
+        "worship"
+      ]
+    },
+    {
+      "id": "Matt6_14_15_34_Matt7_12",
+      "scripture": "Matthew 6:14–15,34; 7:12",
+      "entryQuestion": "How do Jesus’ teachings improve daily life?",
+      "forwards": [
+        {
+          "to": "Col3_12_14",
+          "bridgeQuestion": "What qualities should we put on?"
+        },
+        {
+          "to": "Gal5_22_23",
+          "bridgeQuestion": "What inner fruit does the spirit grow?"
+        }
+      ],
+      "backlinks": [],
+      "tags": [
+        "BIBLE_VALUE",
+        "JESUS",
+        "apply",
+        "authority",
+        "beneficial",
+        "comfort",
+        "congregation",
+        "jesus",
+        "lamp",
+        "mission",
+        "qualities",
+        "ransom",
+        "scripture",
+        "son of god",
+        "teacher"
+      ]
+    },
+    {
+      "id": "Luke4_43",
+      "scripture": "Luke 4:43",
+      "entryQuestion": "What was Jesus’ main mission message?",
+      "forwards": [
+        {
+          "to": "Matt24_14",
+          "bridgeQuestion": "Why is the Kingdom still the focus of preaching today?"
+        },
+        {
+          "to": "Matt6_9_10",
+          "bridgeQuestion": "What are we asking for in the Lord’s Prayer?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Isa9_6_7",
+          "bridgeQuestion": "What was Jesus’ mission?"
+        }
+      ],
+      "tags": [
+        "JESUS",
+        "KINGDOM",
+        "authority",
+        "good news",
+        "government",
+        "jesus",
+        "kingdom",
+        "messiah",
+        "mission",
+        "preaching",
+        "ransom",
+        "rule",
+        "son of god",
+        "teacher"
+      ]
+    },
+    {
+      "id": "Matt28_18",
+      "scripture": "Matthew 28:18",
+      "entryQuestion": "What does 'all authority' mean for Jesus’ Kingdom work?",
+      "forwards": [
+        {
+          "to": "Dan7_13_14",
+          "bridgeQuestion": "How is this heavenly rulership described?"
+        },
+        {
+          "to": "Matt24_14",
+          "bridgeQuestion": "How does his authority drive global preaching?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Dan7_13_14",
+          "bridgeQuestion": "What authority did Jesus receive?"
+        },
+        {
+          "from": "Isa9_6_7",
+          "bridgeQuestion": "What authority has he received?"
+        },
+        {
+          "from": "OneCor15_27_28",
+          "bridgeQuestion": "What authority has the resurrected Jesus received?"
+        }
+      ],
+      "tags": [
+        "JESUS",
+        "KINGDOM",
+        "authority",
+        "good news",
+        "government",
+        "jesus",
+        "kingdom",
+        "messiah",
+        "mission",
+        "preaching",
+        "ransom",
+        "rule",
+        "son of god",
+        "teacher"
+      ]
+    },
+    {
+      "id": "Dan2_44_Dan7_13_14_Matt6_9_10_Rev11_15",
+      "scripture": "Daniel 2:44; 7:13–14; Matthew 6:9–10; Revelation 11:15",
+      "entryQuestion": "What is God’s Kingdom—a real government?",
+      "forwards": [
+        {
+          "to": "Isa65_21_23_Ps37_10_11",
+          "bridgeQuestion": "What problems will it solve?"
+        },
+        {
+          "to": "Isa9_6_7",
+          "bridgeQuestion": "What kind of ruler is the Messiah?"
+        },
+        {
+          "to": "Ps2_7_9",
+          "bridgeQuestion": "How will it replace human governments?"
+        }
+      ],
+      "backlinks": [],
+      "tags": [
+        "FUTURE",
+        "KINGDOM",
+        "authority",
+        "environment",
+        "everlasting life",
+        "future",
+        "good news",
+        "government",
+        "health",
+        "hope",
+        "kingdom",
+        "last days",
+        "messiah",
+        "paradise",
+        "preaching",
+        "prophecy",
+        "rule",
+        "signs"
+      ]
+    },
+    {
+      "id": "Ps2_7_9",
+      "scripture": "Psalm 2:7–9",
+      "entryQuestion": "How will God’s Son exercise authority over the nations?",
+      "forwards": [
+        {
+          "to": "Dan2_44",
+          "bridgeQuestion": "When and how does the Kingdom act?"
+        },
+        {
+          "to": "Ps72_12_14",
+          "bridgeQuestion": "What kind of justice will it bring?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Dan2_44_Dan7_13_14_Matt6_9_10_Rev11_15",
+          "bridgeQuestion": "How will it replace human governments?"
+        }
+      ],
+      "tags": [
+        "KINGDOM",
+        "authority",
+        "good news",
+        "government",
+        "kingdom",
+        "messiah",
+        "preaching",
+        "rule"
+      ]
+    },
+    {
+      "id": "Ps72_12_14",
+      "scripture": "Psalm 72:12–14",
+      "entryQuestion": "What does righteous rule look like in practice?",
+      "forwards": [
+        {
+          "to": "Isa11_6_9",
+          "bridgeQuestion": "What comprehensive peace will result?"
+        },
+        {
+          "to": "Mic4_3",
+          "bridgeQuestion": "How will peace be enforced globally?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Isa11_6_9_Mic4_4",
+          "bridgeQuestion": "How will the vulnerable be treated?"
+        },
+        {
+          "from": "Mic4_4",
+          "bridgeQuestion": "How will the vulnerable be cared for?"
+        },
+        {
+          "from": "Ps2_7_9",
+          "bridgeQuestion": "What kind of justice will it bring?"
+        }
+      ],
+      "tags": [
+        "FUTURE",
+        "KINGDOM",
+        "authority",
+        "environment",
+        "everlasting life",
+        "future",
+        "good news",
+        "government",
+        "health",
+        "hope",
+        "kingdom",
+        "last days",
+        "messiah",
+        "paradise",
+        "preaching",
+        "prophecy",
+        "rule",
+        "signs"
+      ]
+    },
+    {
+      "id": "Isa65_21_23_Ps37_10_11",
+      "scripture": "Isaiah 65:21–23; Psalm 37:10–11",
+      "entryQuestion": "What will life be like for ordinary people under God’s rule?",
+      "forwards": [
+        {
+          "to": "Ps37_29_Matt5_5",
+          "bridgeQuestion": "Will the righteous live forever on earth?"
+        },
+        {
+          "to": "Rev21_3_4",
+          "bridgeQuestion": "Will suffering and pain end?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Dan2_44_Dan7_13_14_Matt6_9_10_Rev11_15",
+          "bridgeQuestion": "What problems will it solve?"
+        }
+      ],
+      "tags": [
+        "FUTURE",
+        "KINGDOM",
+        "authority",
+        "environment",
+        "everlasting life",
+        "future",
+        "good news",
+        "government",
+        "health",
+        "hope",
+        "kingdom",
+        "last days",
+        "messiah",
+        "paradise",
+        "preaching",
+        "prophecy",
+        "rule",
+        "signs"
+      ]
+    },
+    {
+      "id": "Rev11_15",
+      "scripture": "Revelation 11:15",
+      "entryQuestion": "What happens when the Kingdom takes up power over the world?",
+      "forwards": [
+        {
+          "to": "Dan2_44",
+          "bridgeQuestion": "How does this fulfill Daniel’s prophecy?"
+        },
+        {
+          "to": "Rev21_3_4",
+          "bridgeQuestion": "What change will people feel?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Dan7_13_14",
+          "bridgeQuestion": "How does heaven’s Kingdom affect earth?"
+        },
+        {
+          "from": "Matt6_9_10",
+          "bridgeQuestion": "How will heavenly rulership change things on earth?"
+        }
+      ],
+      "tags": [
+        "FUTURE",
+        "KINGDOM",
+        "authority",
+        "environment",
+        "everlasting life",
+        "future",
+        "good news",
+        "government",
+        "health",
+        "hope",
+        "kingdom",
+        "last days",
+        "messiah",
+        "paradise",
+        "preaching",
+        "prophecy",
+        "rule",
+        "signs"
+      ]
+    },
+    {
+      "id": "Matt24_14",
+      "scripture": "Matthew 24:14",
+      "entryQuestion": "Why is the good news being preached worldwide?",
+      "forwards": [
+        {
+          "to": "Luke21_28",
+          "bridgeQuestion": "What does the global preaching work signify about the time?"
+        },
+        {
+          "to": "Rom10_13_14",
+          "bridgeQuestion": "How do people come to call on God’s name?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "John13_34_35_Mic4_3",
+          "bridgeQuestion": "How does true worship motivate global preaching?"
+        },
+        {
+          "from": "Luke4_43",
+          "bridgeQuestion": "Why is the Kingdom still the focus of preaching today?"
+        },
+        {
+          "from": "Matt28_18",
+          "bridgeQuestion": "How does his authority drive global preaching?"
+        },
+        {
+          "from": "Rom10_13_14",
+          "bridgeQuestion": "How is preaching connected to salvation?"
+        },
+        {
+          "from": "TwoPet3_9",
+          "bridgeQuestion": "What must happen before the end?"
+        }
+      ],
+      "tags": [
+        "BIBLE_VALUE",
+        "KINGDOM",
+        "apply",
+        "authority",
+        "beneficial",
+        "comfort",
+        "congregation",
+        "good news",
+        "government",
+        "kingdom",
+        "lamp",
+        "messiah",
+        "preaching",
+        "qualities",
+        "rule",
+        "scripture"
+      ]
+    },
+    {
+      "id": "Luke21_28_again",
+      "scripture": "Luke 21:28",
+      "entryQuestion": "As deliverance approaches, what should our posture be?",
+      "forwards": [
+        {
+          "to": "2Tim3_1_5",
+          "bridgeQuestion": "Do current conditions match the foretold 'last days'?"
+        },
+        {
+          "to": "Heb10_24_25",
+          "bridgeQuestion": "How does meeting together help us endure?"
+        }
+      ],
+      "backlinks": [],
+      "tags": [
+        "FUTURE",
+        "KINGDOM",
+        "authority",
+        "environment",
+        "everlasting life",
+        "future",
+        "good news",
+        "government",
+        "health",
+        "hope",
+        "kingdom",
+        "last days",
+        "messiah",
+        "paradise",
+        "preaching",
+        "prophecy",
+        "rule",
+        "signs"
+      ]
+    },
+    {
+      "id": "Rom10_13_14",
+      "scripture": "Romans 10:13–14",
+      "entryQuestion": "How do people come to call on the name of Jehovah?",
+      "forwards": [
+        {
+          "to": "Matt24_14",
+          "bridgeQuestion": "How is preaching connected to salvation?"
+        },
+        {
+          "to": "Ps83_18_Jer10_10",
+          "bridgeQuestion": "Which name should be made known?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Heb10_24_25",
+          "bridgeQuestion": "How does association equip us to help others call on Jehovah’s name?"
+        },
+        {
+          "from": "Matt24_14",
+          "bridgeQuestion": "How do people come to call on God’s name?"
+        },
+        {
+          "from": "Ps83_18_Jer10_10",
+          "bridgeQuestion": "Why does using his name matter in worship?"
+        },
+        {
+          "from": "TwoPet3_9",
+          "bridgeQuestion": "How does his patience allow more to be saved?"
+        }
+      ],
+      "tags": [
+        "BIBLE_VALUE",
+        "GOD",
+        "KINGDOM",
+        "apply",
+        "authority",
+        "beneficial",
+        "bible",
+        "comfort",
+        "communication",
+        "congregation",
+        "draw close",
+        "god",
+        "good news",
+        "government",
+        "impartial",
+        "jehovah",
+        "kingdom",
+        "lamp",
+        "messiah",
+        "name",
+        "personality",
+        "preaching",
+        "qualities",
+        "rule",
+        "scripture"
+      ]
+    },
+    {
+      "id": "Deut32_4_Jas1_13",
+      "scripture": "Deuteronomy 32:4; James 1:13",
+      "entryQuestion": "How do we know God does not cause suffering?",
+      "forwards": [
+        {
+          "to": "OneJohn5_19_Luke4_5_6",
+          "bridgeQuestion": "Who is really behind the world’s troubles?"
+        },
+        {
+          "to": "Rev21_3_4",
+          "bridgeQuestion": "How will it finally end?"
+        },
+        {
+          "to": "TwoPet3_9",
+          "bridgeQuestion": "Why does God allow it for a time?"
+        }
+      ],
+      "backlinks": [],
+      "tags": [
+        "GOD",
+        "SUFFERING",
+        "bible",
+        "communication",
+        "draw close",
+        "evil",
+        "god",
+        "hope",
+        "impartial",
+        "jehovah",
+        "name",
+        "permission",
+        "personality",
+        "satan",
+        "suffering",
+        "why"
+      ]
+    },
+    {
+      "id": "OneJohn5_19_Luke4_5_6",
+      "scripture": "1 John 5:19; Luke 4:5–6",
+      "entryQuestion": "Why is the world in such a bad state?",
+      "forwards": [
+        {
+          "to": "Jas1_13_back",
+          "bridgeQuestion": "Are we sure God isn’t to blame?"
+        },
+        {
+          "to": "Rev12_9_10",
+          "bridgeQuestion": "What does the Bible say about Satan’s activity and his end?"
+        },
+        {
+          "to": "Rev21_3_4",
+          "bridgeQuestion": "What hope do we have?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Deut32_4_Jas1_13",
+          "bridgeQuestion": "Who is really behind the world’s troubles?"
+        },
+        {
+          "from": "Rev12_9_10",
+          "bridgeQuestion": "How does this explain world conditions?"
+        }
+      ],
+      "tags": [
+        "SUFFERING",
+        "evil",
+        "hope",
+        "permission",
+        "satan",
+        "suffering",
+        "why"
+      ]
+    },
+    {
+      "id": "Rev12_9_10",
+      "scripture": "Revelation 12:9–10",
+      "entryQuestion": "How active is Satan now, and what is his future?",
+      "forwards": [
+        {
+          "to": "OneJohn5_19_Luke4_5_6",
+          "bridgeQuestion": "How does this explain world conditions?"
+        },
+        {
+          "to": "Rev21_3_4",
+          "bridgeQuestion": "What happens when his influence ends?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "OneJohn5_19_Luke4_5_6",
+          "bridgeQuestion": "What does the Bible say about Satan’s activity and his end?"
+        }
+      ],
+      "tags": [
+        "FUTURE",
+        "SUFFERING",
+        "environment",
+        "everlasting life",
+        "evil",
+        "future",
+        "health",
+        "hope",
+        "last days",
+        "paradise",
+        "permission",
+        "prophecy",
+        "satan",
+        "signs",
+        "suffering",
+        "why"
+      ]
+    },
+    {
+      "id": "TwoPet3_9",
+      "scripture": "2 Peter 3:9",
+      "entryQuestion": "Why has God allowed wickedness to continue?",
+      "forwards": [
+        {
+          "to": "Matt24_14",
+          "bridgeQuestion": "What must happen before the end?"
+        },
+        {
+          "to": "Rom10_13_14",
+          "bridgeQuestion": "How does his patience allow more to be saved?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Deut32_4_Jas1_13",
+          "bridgeQuestion": "Why does God allow it for a time?"
+        }
+      ],
+      "tags": [
+        "KINGDOM",
+        "SUFFERING",
+        "authority",
+        "evil",
+        "good news",
+        "government",
+        "hope",
+        "kingdom",
+        "messiah",
+        "permission",
+        "preaching",
+        "rule",
+        "satan",
+        "suffering",
+        "why"
+      ]
+    },
+    {
+      "id": "Ps34_17_19_Isa41_10_13",
+      "scripture": "Psalm 34:17–19; Isaiah 41:10,13",
+      "entryQuestion": "How does God help sufferers right now?",
+      "forwards": [
+        {
+          "to": "OnePet5_7",
+          "bridgeQuestion": "How do we throw anxiety on him?"
+        },
+        {
+          "to": "Rev21_3_4",
+          "bridgeQuestion": "What permanent relief is promised?"
+        }
+      ],
+      "backlinks": [],
+      "tags": [
+        "PRAYER",
+        "SUFFERING",
+        "ask seek knock",
+        "cast anxiety",
+        "evil",
+        "hope",
+        "model prayer",
+        "permission",
+        "prayer",
+        "satan",
+        "suffering",
+        "why",
+        "worship"
+      ]
+    },
+    {
+      "id": "OnePet5_7",
+      "scripture": "1 Peter 5:7",
+      "entryQuestion": "How do we show faith by throwing our anxieties on God?",
+      "forwards": [
+        {
+          "to": "Phil4_6_7",
+          "bridgeQuestion": "What peace does God give in return?"
+        },
+        {
+          "to": "Ps62_8_Ps65_2_OnePet5_7",
+          "bridgeQuestion": "How do we pour out our heart to him in prayer?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Jas4_8",
+          "bridgeQuestion": "What do we do with our anxieties?"
+        },
+        {
+          "from": "Ps34_17_19_Isa41_10_13",
+          "bridgeQuestion": "How do we throw anxiety on him?"
+        },
+        {
+          "from": "Ps46_1_Ps145_18_19",
+          "bridgeQuestion": "How do we cast anxieties on him?"
+        },
+        {
+          "from": "Ps62_8_Ps65_2",
+          "bridgeQuestion": "How do we throw our anxieties on him?"
+        }
+      ],
+      "tags": [
+        "PRAYER",
+        "SUFFERING",
+        "ask seek knock",
+        "cast anxiety",
+        "evil",
+        "hope",
+        "model prayer",
+        "permission",
+        "prayer",
+        "satan",
+        "suffering",
+        "why",
+        "worship"
+      ]
+    },
+    {
+      "id": "Rev21_3_4",
+      "scripture": "Revelation 21:3–4",
+      "entryQuestion": "What hope does God give for the future regarding suffering and death?",
+      "forwards": [
+        {
+          "to": "Isa65_21_23",
+          "bridgeQuestion": "What will everyday life be like under those promises?"
+        },
+        {
+          "to": "OneCor15_26",
+          "bridgeQuestion": "How will death itself be brought to nothing?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Acts24_15",
+          "bridgeQuestion": "What kind of world will greet them?"
+        },
+        {
+          "from": "Acts24_15_John5_28_29",
+          "bridgeQuestion": "What kind of world awaits the resurrected?"
+        },
+        {
+          "from": "Deut32_4_Jas1_13",
+          "bridgeQuestion": "How will it finally end?"
+        },
+        {
+          "from": "Isa46_10",
+          "bridgeQuestion": "How do fulfilled promises bolster our hope?"
+        },
+        {
+          "from": "Isa65_21_23_Ps37_10_11",
+          "bridgeQuestion": "Will suffering and pain end?"
+        },
+        {
+          "from": "Job14_13_15",
+          "bridgeQuestion": "What will life be like when death is no more?"
+        },
+        {
+          "from": "John5_28_29",
+          "bridgeQuestion": "What world will they awaken to?"
+        },
+        {
+          "from": "OneCor15_26",
+          "bridgeQuestion": "When will it be brought to nothing?"
+        },
+        {
+          "from": "OneJohn5_19_Luke4_5_6",
+          "bridgeQuestion": "What hope do we have?"
+        },
+        {
+          "from": "Ps34_17_19_Isa41_10_13",
+          "bridgeQuestion": "What permanent relief is promised?"
+        },
+        {
+          "from": "Rev11_15",
+          "bridgeQuestion": "What change will people feel?"
+        },
+        {
+          "from": "Rev12_9_10",
+          "bridgeQuestion": "What happens when his influence ends?"
+        }
+      ],
+      "tags": [
+        "DEATH",
+        "FUTURE",
+        "KINGDOM",
+        "SUFFERING",
+        "afterlife",
+        "authority",
+        "death",
+        "environment",
+        "everlasting life",
+        "evil",
+        "future",
+        "good news",
+        "government",
+        "grave",
+        "health",
+        "hope",
+        "kingdom",
+        "last days",
+        "messiah",
+        "paradise",
+        "permission",
+        "preaching",
+        "prophecy",
+        "resurrection",
+        "rule",
+        "satan",
+        "signs",
+        "sleep",
+        "suffering",
+        "why"
+      ]
+    },
+    {
+      "id": "Eccl9_5_John11_11_14",
+      "scripture": "Ecclesiastes 9:5; John 11:11–14",
+      "entryQuestion": "What really happens at death?",
+      "forwards": [
+        {
+          "to": "Acts24_15_John5_28_29",
+          "bridgeQuestion": "Is there a real hope for our loved ones?"
+        },
+        {
+          "to": "Ps146_4_Eccl9_6_10",
+          "bridgeQuestion": "Can the dead help or harm us?"
+        }
+      ],
+      "backlinks": [],
+      "tags": [
+        "DEATH",
+        "afterlife",
+        "death",
+        "grave",
+        "hope",
+        "resurrection",
+        "sleep"
+      ]
+    },
+    {
+      "id": "Ps146_4_Eccl9_6_10",
+      "scripture": "Psalm 146:4; Ecclesiastes 9:6,10",
+      "entryQuestion": "Can the dead interact with the living?",
+      "forwards": [
+        {
+          "to": "Acts24_15",
+          "bridgeQuestion": "If not, what hope is there?"
+        },
+        {
+          "to": "Isa25_8_Rev21_4",
+          "bridgeQuestion": "Will death itself be removed?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Eccl9_5_John11_11_14",
+          "bridgeQuestion": "Can the dead help or harm us?"
+        }
+      ],
+      "tags": [
+        "DEATH",
+        "afterlife",
+        "death",
+        "grave",
+        "hope",
+        "resurrection",
+        "sleep"
+      ]
+    },
+    {
+      "id": "Acts24_15_John5_28_29",
+      "scripture": "Acts 24:15; John 5:28–29",
+      "entryQuestion": "Is there really a resurrection hope for all?",
+      "forwards": [
+        {
+          "to": "Ps37_29_Matt5_5",
+          "bridgeQuestion": "Where will they live?"
+        },
+        {
+          "to": "Rev21_3_4",
+          "bridgeQuestion": "What kind of world awaits the resurrected?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Eccl9_5_John11_11_14",
+          "bridgeQuestion": "Is there a real hope for our loved ones?"
+        },
+        {
+          "from": "Job14_13_15",
+          "bridgeQuestion": "Who will call and who will answer from the grave?"
+        }
+      ],
+      "tags": [
+        "DEATH",
+        "FUTURE",
+        "afterlife",
+        "death",
+        "environment",
+        "everlasting life",
+        "future",
+        "grave",
+        "health",
+        "hope",
+        "last days",
+        "paradise",
+        "prophecy",
+        "resurrection",
+        "signs",
+        "sleep"
+      ]
+    },
+    {
+      "id": "Job14_13_15",
+      "scripture": "Job 14:13–15",
+      "entryQuestion": "How does God’s yearning for the work of his hands comfort us about those who have died?",
+      "forwards": [
+        {
+          "to": "Acts24_15_John5_28_29",
+          "bridgeQuestion": "Who will call and who will answer from the grave?"
+        },
+        {
+          "to": "Rev21_3_4",
+          "bridgeQuestion": "What will life be like when death is no more?"
+        }
+      ],
+      "backlinks": [],
+      "tags": [
+        "DEATH",
+        "FUTURE",
+        "afterlife",
+        "death",
+        "environment",
+        "everlasting life",
+        "future",
+        "grave",
+        "health",
+        "hope",
+        "last days",
+        "paradise",
+        "prophecy",
+        "resurrection",
+        "signs",
+        "sleep"
+      ]
+    },
+    {
+      "id": "OneCor15_26",
+      "scripture": "1 Corinthians 15:26",
+      "entryQuestion": "Why is death called the last enemy, and what will happen to it?",
+      "forwards": [
+        {
+          "to": "John5_28_29",
+          "bridgeQuestion": "How does the resurrection relate?"
+        },
+        {
+          "to": "Rev21_3_4",
+          "bridgeQuestion": "When will it be brought to nothing?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "OnePet2_24",
+          "bridgeQuestion": "How does his victory affect death itself?"
+        },
+        {
+          "from": "Rev21_3_4",
+          "bridgeQuestion": "How will death itself be brought to nothing?"
+        }
+      ],
+      "tags": [
+        "DEATH",
+        "FUTURE",
+        "afterlife",
+        "death",
+        "environment",
+        "everlasting life",
+        "future",
+        "grave",
+        "health",
+        "hope",
+        "last days",
+        "paradise",
+        "prophecy",
+        "resurrection",
+        "signs",
+        "sleep"
+      ]
+    },
+    {
+      "id": "Isa25_8_Rev21_4",
+      "scripture": "Isaiah 25:8; Revelation 21:4",
+      "entryQuestion": "How will Jehovah swallow up death forever?",
+      "forwards": [
+        {
+          "to": "Acts24_15",
+          "bridgeQuestion": "What hope do the dead have because of this?"
+        },
+        {
+          "to": "Ps37_29_Matt5_5",
+          "bridgeQuestion": "What life awaits people then?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Ps146_4_Eccl9_6_10",
+          "bridgeQuestion": "Will death itself be removed?"
+        }
+      ],
+      "tags": [
+        "DEATH",
+        "FUTURE",
+        "afterlife",
+        "death",
+        "environment",
+        "everlasting life",
+        "future",
+        "grave",
+        "health",
+        "hope",
+        "last days",
+        "paradise",
+        "prophecy",
+        "resurrection",
+        "signs",
+        "sleep"
+      ]
+    },
+    {
+      "id": "Jer7_11_Matt7_13_14_21_23",
+      "scripture": "Jeremiah 7:11; Matthew 7:13–14,21–23",
+      "entryQuestion": "Do all religions please God?",
+      "forwards": [
+        {
+          "to": "Isa29_13_Mark7_6_8_Mic3_11",
+          "bridgeQuestion": "Why does God hate hypocrisy?"
+        },
+        {
+          "to": "John13_34_35_Mic4_3",
+          "bridgeQuestion": "How can we identify true religion?"
+        }
+      ],
+      "backlinks": [],
+      "tags": [
+        "RELIGION",
+        "hypocrisy",
+        "love",
+        "peace",
+        "religion",
+        "true religion"
+      ]
+    },
+    {
+      "id": "Isa29_13_Mark7_6_8_Mic3_11",
+      "scripture": "Isaiah 29:13; Mark 7:6–8; Micah 3:11",
+      "entryQuestion": "Why is outward worship without obedience unacceptable to God?",
+      "forwards": [
+        {
+          "to": "Gal5_22_23",
+          "bridgeQuestion": "What kind of people does true worship produce?"
+        },
+        {
+          "to": "John13_34_35",
+          "bridgeQuestion": "What hallmark proves true discipleship?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Jer7_11_Matt7_13_14_21_23",
+          "bridgeQuestion": "Why does God hate hypocrisy?"
+        }
+      ],
+      "tags": [
+        "BIBLE_VALUE",
+        "RELIGION",
+        "apply",
+        "beneficial",
+        "comfort",
+        "congregation",
+        "hypocrisy",
+        "lamp",
+        "love",
+        "peace",
+        "qualities",
+        "religion",
+        "scripture",
+        "true religion"
+      ]
+    },
+    {
+      "id": "John13_34_35_Mic4_3",
+      "scripture": "John 13:34–35; Micah 4:3",
+      "entryQuestion": "How do love and peace identify true religion?",
+      "forwards": [
+        {
+          "to": "Matt24_14",
+          "bridgeQuestion": "How does true worship motivate global preaching?"
+        },
+        {
+          "to": "OneJohn4_8",
+          "bridgeQuestion": "If God is love, how should worship look?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Jer7_11_Matt7_13_14_21_23",
+          "bridgeQuestion": "How can we identify true religion?"
+        }
+      ],
+      "tags": [
+        "JESUS",
+        "KINGDOM",
+        "RELIGION",
+        "authority",
+        "good news",
+        "government",
+        "hypocrisy",
+        "jesus",
+        "kingdom",
+        "love",
+        "messiah",
+        "mission",
+        "peace",
+        "preaching",
+        "ransom",
+        "religion",
+        "rule",
+        "son of god",
+        "teacher",
+        "true religion"
+      ]
+    },
+    {
+      "id": "TwoTim3_16_17",
+      "scripture": "2 Timothy 3:16–17",
+      "entryQuestion": "Why is the Bible uniquely “beneficial”?",
+      "forwards": [
+        {
+          "to": "Isa48_17_18",
+          "bridgeQuestion": "How does obeying it help us benefit ourselves?"
+        },
+        {
+          "to": "Ps119_105",
+          "bridgeQuestion": "How does it guide daily steps?"
+        },
+        {
+          "to": "Rom15_4",
+          "bridgeQuestion": "How does it give comfort and hope?"
+        }
+      ],
+      "backlinks": [],
+      "tags": [
+        "BIBLE_VALUE",
+        "GOD",
+        "apply",
+        "beneficial",
+        "bible",
+        "comfort",
+        "communication",
+        "congregation",
+        "draw close",
+        "god",
+        "impartial",
+        "jehovah",
+        "lamp",
+        "name",
+        "personality",
+        "qualities",
+        "scripture"
+      ]
+    },
+    {
+      "id": "Rom15_4",
+      "scripture": "Romans 15:4",
+      "entryQuestion": "How do the Scriptures strengthen us through trials?",
+      "forwards": [
+        {
+          "to": "Heb10_24_25",
+          "bridgeQuestion": "Why meet together to be encouraged?"
+        },
+        {
+          "to": "Ps119_105",
+          "bridgeQuestion": "How do we apply its guidance?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "TwoTim3_16_17",
+          "bridgeQuestion": "How does it give comfort and hope?"
+        },
+        {
+          "from": "TwoTim3_16_17_TwoPet1_20_21",
+          "bridgeQuestion": "How do the Scriptures give comfort and hope?"
+        }
+      ],
+      "tags": [
+        "BIBLE_VALUE",
+        "apply",
+        "beneficial",
+        "comfort",
+        "congregation",
+        "lamp",
+        "qualities",
+        "scripture"
+      ]
+    },
+    {
+      "id": "Ps119_105",
+      "scripture": "Psalm 119:105",
+      "entryQuestion": "What does it mean for God’s word to be a lamp to our foot?",
+      "forwards": [
+        {
+          "to": "Col3_12_14",
+          "bridgeQuestion": "What changes should the word produce in us?"
+        },
+        {
+          "to": "Isa48_17_18",
+          "bridgeQuestion": "What results come from listening to Jehovah?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Rom15_4",
+          "bridgeQuestion": "How do we apply its guidance?"
+        },
+        {
+          "from": "TwoTim3_16_17",
+          "bridgeQuestion": "How does it guide daily steps?"
+        },
+        {
+          "from": "TwoTim3_16_17_TwoPet1_20_21",
+          "bridgeQuestion": "How does Scripture guide practical decisions?"
+        }
+      ],
+      "tags": [
+        "BIBLE_VALUE",
+        "apply",
+        "beneficial",
+        "comfort",
+        "congregation",
+        "lamp",
+        "qualities",
+        "scripture"
+      ]
+    },
+    {
+      "id": "Isa48_17_18",
+      "scripture": "Isaiah 48:17–18",
+      "entryQuestion": "How does Jehovah teach us to “benefit ourselves”?",
+      "forwards": [
+        {
+          "to": "Gal5_22_23",
+          "bridgeQuestion": "What qualities grow as we follow his counsel?"
+        },
+        {
+          "to": "Matt7_12",
+          "bridgeQuestion": "How do we treat others as a result?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Ps119_105",
+          "bridgeQuestion": "What results come from listening to Jehovah?"
+        },
+        {
+          "from": "TwoTim3_16_17",
+          "bridgeQuestion": "How does obeying it help us benefit ourselves?"
+        }
+      ],
+      "tags": [
+        "BIBLE_VALUE",
+        "JESUS",
+        "apply",
+        "authority",
+        "beneficial",
+        "comfort",
+        "congregation",
+        "jesus",
+        "lamp",
+        "mission",
+        "qualities",
+        "ransom",
+        "scripture",
+        "son of god",
+        "teacher"
+      ]
+    },
+    {
+      "id": "Col3_12_14",
+      "scripture": "Colossians 3:12–14",
+      "entryQuestion": "What does Christian personality look like?",
+      "forwards": [
+        {
+          "to": "Heb10_24_25",
+          "bridgeQuestion": "Why is congregation life essential to cultivate these traits?"
+        },
+        {
+          "to": "John13_34_35",
+          "bridgeQuestion": "How does love identify us?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Deut6_6_7",
+          "bridgeQuestion": "What qualities should family members put on?"
+        },
+        {
+          "from": "Gal5_22_23",
+          "bridgeQuestion": "How do we clothe ourselves with these qualities?"
+        },
+        {
+          "from": "Matt6_14_15_34_Matt7_12",
+          "bridgeQuestion": "What qualities should we put on?"
+        },
+        {
+          "from": "OnePet2_24",
+          "bridgeQuestion": "What change should forgiven people make?"
+        },
+        {
+          "from": "Ps119_105",
+          "bridgeQuestion": "What changes should the word produce in us?"
+        }
+      ],
+      "tags": [
+        "BIBLE_VALUE",
+        "RELIGION",
+        "apply",
+        "beneficial",
+        "comfort",
+        "congregation",
+        "hypocrisy",
+        "lamp",
+        "love",
+        "peace",
+        "qualities",
+        "religion",
+        "scripture",
+        "true religion"
+      ]
+    },
+    {
+      "id": "Gal5_22_23",
+      "scripture": "Galatians 5:22–23",
+      "entryQuestion": "What inner fruit does God’s spirit produce?",
+      "forwards": [
+        {
+          "to": "Col3_12_14",
+          "bridgeQuestion": "How do we clothe ourselves with these qualities?"
+        },
+        {
+          "to": "John13_34_35",
+          "bridgeQuestion": "How should this love show outwardly?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Isa29_13_Mark7_6_8_Mic3_11",
+          "bridgeQuestion": "What kind of people does true worship produce?"
+        },
+        {
+          "from": "Isa48_17_18",
+          "bridgeQuestion": "What qualities grow as we follow his counsel?"
+        },
+        {
+          "from": "Matt6_14_15_34_Matt7_12",
+          "bridgeQuestion": "What inner fruit does the spirit grow?"
+        },
+        {
+          "from": "OneJohn4_8",
+          "bridgeQuestion": "What inner fruit does love produce?"
+        }
+      ],
+      "tags": [
+        "BIBLE_VALUE",
+        "RELIGION",
+        "apply",
+        "beneficial",
+        "comfort",
+        "congregation",
+        "hypocrisy",
+        "lamp",
+        "love",
+        "peace",
+        "qualities",
+        "religion",
+        "scripture",
+        "true religion"
+      ]
+    },
+    {
+      "id": "Heb10_24_25",
+      "scripture": "Hebrews 10:24–25",
+      "entryQuestion": "Why keep meeting as the day draws near?",
+      "forwards": [
+        {
+          "to": "Luke21_28",
+          "bridgeQuestion": "What are we drawing near to?"
+        },
+        {
+          "to": "Rom10_13_14",
+          "bridgeQuestion": "How does association equip us to help others call on Jehovah’s name?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Col3_12_14",
+          "bridgeQuestion": "Why is congregation life essential to cultivate these traits?"
+        },
+        {
+          "from": "Luke21_28",
+          "bridgeQuestion": "Why gather together as the day draws near?"
+        },
+        {
+          "from": "Luke21_28_again",
+          "bridgeQuestion": "How does meeting together help us endure?"
+        },
+        {
+          "from": "Rom15_4",
+          "bridgeQuestion": "Why meet together to be encouraged?"
+        }
+      ],
+      "tags": [
+        "BIBLE_VALUE",
+        "KINGDOM",
+        "apply",
+        "authority",
+        "beneficial",
+        "comfort",
+        "congregation",
+        "good news",
+        "government",
+        "kingdom",
+        "lamp",
+        "messiah",
+        "preaching",
+        "qualities",
+        "rule",
+        "scripture"
+      ]
+    },
+    {
+      "id": "Isa46_10",
+      "scripture": "Isaiah 46:10",
+      "entryQuestion": "How does Jehovah declare the end from the beginning?",
+      "forwards": [
+        {
+          "to": "Rev21_3_4",
+          "bridgeQuestion": "How do fulfilled promises bolster our hope?"
+        },
+        {
+          "to": "TwoTim3_1_5_back",
+          "bridgeQuestion": "Do our times match what was foretold?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "TwoTim3_16_17_TwoPet1_20_21",
+          "bridgeQuestion": "Does fulfilled prophecy confirm inspiration?"
+        }
+      ],
+      "tags": [
+        "BIBLE_VALUE",
+        "FUTURE",
+        "apply",
+        "beneficial",
+        "comfort",
+        "congregation",
+        "environment",
+        "everlasting life",
+        "future",
+        "health",
+        "hope",
+        "lamp",
+        "last days",
+        "paradise",
+        "prophecy",
+        "qualities",
+        "scripture",
+        "signs"
+      ]
+    },
+    {
+      "id": "John17_3",
+      "scripture": "John 17:3",
+      "entryQuestion": "What does it mean to know God and Christ for everlasting life?",
+      "forwards": [
+        {
+          "to": "Jas4_8",
+          "bridgeQuestion": "How do we practically draw close?"
+        },
+        {
+          "to": "Matt6_9_10",
+          "bridgeQuestion": "How does knowing God shape our priorities in prayer?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "John16_23",
+          "bridgeQuestion": "How does prayer deepen our knowledge of God and Christ?"
+        },
+        {
+          "from": "Matt6_7_13_Luke11_1_4",
+          "bridgeQuestion": "How is knowing God part of prayer’s goal?"
+        },
+        {
+          "from": "Rom5_8",
+          "bridgeQuestion": "How do we respond in appreciation?"
+        }
+      ],
+      "tags": [
+        "GOD",
+        "PRAYER",
+        "ask seek knock",
+        "bible",
+        "cast anxiety",
+        "communication",
+        "draw close",
+        "god",
+        "impartial",
+        "jehovah",
+        "model prayer",
+        "name",
+        "personality",
+        "prayer",
+        "worship"
+      ]
+    },
+    {
+      "id": "Jas4_8",
+      "scripture": "James 4:8",
+      "entryQuestion": "How do we draw close to God so that he draws close to us?",
+      "forwards": [
+        {
+          "to": "OnePet5_7",
+          "bridgeQuestion": "What do we do with our anxieties?"
+        },
+        {
+          "to": "Ps62_8_Ps65_2_OnePet5_7",
+          "bridgeQuestion": "How do we pour out our heart to him?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Ex3_15_Isa42_8",
+          "bridgeQuestion": "How do we draw close to a personal God?"
+        },
+        {
+          "from": "John17_3",
+          "bridgeQuestion": "How do we practically draw close?"
+        }
+      ],
+      "tags": [
+        "GOD",
+        "PRAYER",
+        "ask seek knock",
+        "bible",
+        "cast anxiety",
+        "communication",
+        "draw close",
+        "god",
+        "impartial",
+        "jehovah",
+        "model prayer",
+        "name",
+        "personality",
+        "prayer",
+        "worship"
+      ]
+    },
+    {
+      "id": "OneJohn4_8",
+      "scripture": "1 John 4:8",
+      "entryQuestion": "If 'God is love', what should worship look like?",
+      "forwards": [
+        {
+          "to": "Gal5_22_23",
+          "bridgeQuestion": "What inner fruit does love produce?"
+        },
+        {
+          "to": "John13_34_35",
+          "bridgeQuestion": "How does love identify true disciples?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Ex3_15_Isa42_8",
+          "bridgeQuestion": "What does his name tell us about his personality?"
+        },
+        {
+          "from": "John13_34_35_Mic4_3",
+          "bridgeQuestion": "If God is love, how should worship look?"
+        }
+      ],
+      "tags": [
+        "GOD",
+        "RELIGION",
+        "bible",
+        "communication",
+        "draw close",
+        "god",
+        "hypocrisy",
+        "impartial",
+        "jehovah",
+        "love",
+        "name",
+        "peace",
+        "personality",
+        "religion",
+        "true religion"
+      ]
+    },
+    {
+      "id": "Dan7_13_14",
+      "scripture": "Daniel 7:13–14",
+      "entryQuestion": "How is the Son of man’s heavenly rulership described?",
+      "forwards": [
+        {
+          "to": "Matt28_18",
+          "bridgeQuestion": "What authority did Jesus receive?"
+        },
+        {
+          "to": "Rev11_15",
+          "bridgeQuestion": "How does heaven’s Kingdom affect earth?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Matt28_18",
+          "bridgeQuestion": "How is this heavenly rulership described?"
+        }
+      ],
+      "tags": [
+        "JESUS",
+        "KINGDOM",
+        "authority",
+        "good news",
+        "government",
+        "jesus",
+        "kingdom",
+        "messiah",
+        "mission",
+        "preaching",
+        "ransom",
+        "rule",
+        "son of god",
+        "teacher"
+      ]
+    },
+    {
+      "id": "John5_28_29",
+      "scripture": "John 5:28–29",
+      "entryQuestion": "Who will hear Jesus’ voice and come out of the memorial tombs?",
+      "forwards": [
+        {
+          "to": "Acts24_15",
+          "bridgeQuestion": "How broad is the resurrection hope?"
+        },
+        {
+          "to": "Rev21_3_4",
+          "bridgeQuestion": "What world will they awaken to?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Matt16_16_John3_16_OneJohn4_15",
+          "bridgeQuestion": "What future does the ransom guarantee?"
+        },
+        {
+          "from": "OneCor15_26",
+          "bridgeQuestion": "How does the resurrection relate?"
+        }
+      ],
+      "tags": [
+        "DEATH",
+        "FUTURE",
+        "afterlife",
+        "death",
+        "environment",
+        "everlasting life",
+        "future",
+        "grave",
+        "health",
+        "hope",
+        "last days",
+        "paradise",
+        "prophecy",
+        "resurrection",
+        "signs",
+        "sleep"
+      ]
+    },
+    {
+      "id": "Acts24_15",
+      "scripture": "Acts 24:15",
+      "entryQuestion": "How certain is the resurrection of both the righteous and the unrighteous?",
+      "forwards": [
+        {
+          "to": "Ps37_29_Matt5_5",
+          "bridgeQuestion": "Where will they live?"
+        },
+        {
+          "to": "Rev21_3_4",
+          "bridgeQuestion": "What kind of world will greet them?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Isa25_8_Rev21_4",
+          "bridgeQuestion": "What hope do the dead have because of this?"
+        },
+        {
+          "from": "John5_28_29",
+          "bridgeQuestion": "How broad is the resurrection hope?"
+        },
+        {
+          "from": "Ps146_4_Eccl9_6_10",
+          "bridgeQuestion": "If not, what hope is there?"
+        }
+      ],
+      "tags": [
+        "DEATH",
+        "FUTURE",
+        "afterlife",
+        "death",
+        "environment",
+        "everlasting life",
+        "future",
+        "grave",
+        "health",
+        "hope",
+        "last days",
+        "paradise",
+        "prophecy",
+        "resurrection",
+        "signs",
+        "sleep"
+      ]
+    },
+    {
+      "id": "Isa65_21_23",
+      "scripture": "Isaiah 65:21–23",
+      "entryQuestion": "How will people enjoy secure life under God’s blessing?",
+      "forwards": [
+        {
+          "to": "Matt6_9_10",
+          "bridgeQuestion": "Who makes this possible?"
+        },
+        {
+          "to": "Mic4_4",
+          "bridgeQuestion": "How will families experience that peace?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Ps37_29_Matt5_5",
+          "bridgeQuestion": "What will everyday life be like then?"
+        },
+        {
+          "from": "Rev21_3_4",
+          "bridgeQuestion": "What will everyday life be like under those promises?"
+        }
+      ],
+      "tags": [
+        "FUTURE",
+        "KINGDOM",
+        "authority",
+        "environment",
+        "everlasting life",
+        "future",
+        "good news",
+        "government",
+        "health",
+        "hope",
+        "kingdom",
+        "last days",
+        "messiah",
+        "paradise",
+        "preaching",
+        "prophecy",
+        "rule",
+        "signs"
+      ]
+    },
+    {
+      "id": "Mic4_4",
+      "scripture": "Micah 4:4",
+      "entryQuestion": "What does sitting under one’s vine and fig tree symbolize?",
+      "forwards": [
+        {
+          "to": "Isa11_6_9",
+          "bridgeQuestion": "How broad will peace be under the Messiah?"
+        },
+        {
+          "to": "Ps72_12_14",
+          "bridgeQuestion": "How will the vulnerable be cared for?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Isa65_21_23",
+          "bridgeQuestion": "How will families experience that peace?"
+        }
+      ],
+      "tags": [
+        "FUTURE",
+        "KINGDOM",
+        "authority",
+        "environment",
+        "everlasting life",
+        "future",
+        "good news",
+        "government",
+        "health",
+        "hope",
+        "kingdom",
+        "last days",
+        "messiah",
+        "paradise",
+        "preaching",
+        "prophecy",
+        "rule",
+        "signs"
+      ]
+    },
+    {
+      "id": "Ps145_18_19",
+      "scripture": "Psalm 145:18–19",
+      "entryQuestion": "How does Jehovah draw near to all who call on him in truth?",
+      "forwards": [
+        {
+          "to": "Phil4_6_7",
+          "bridgeQuestion": "How does he give peace to those who pray?"
+        },
+        {
+          "to": "Ps62_8_Ps65_2_OnePet5_7",
+          "bridgeQuestion": "Why does he invite us to pour out our heart?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Matt7_7_8_OneThess5_17",
+          "bridgeQuestion": "How does Jehovah respond to sincere calls?"
+        }
+      ],
+      "tags": [
+        "GOD",
+        "PRAYER",
+        "ask seek knock",
+        "bible",
+        "cast anxiety",
+        "communication",
+        "draw close",
+        "god",
+        "impartial",
+        "jehovah",
+        "model prayer",
+        "name",
+        "personality",
+        "prayer",
+        "worship"
+      ]
+    },
+    {
+      "id": "Ps62_8_Ps65_2",
+      "scripture": "Psalm 62:8; 65:2",
+      "entryQuestion": "How do we pour out our heart to the One who hears prayer?",
+      "forwards": [
+        {
+          "to": "Matt6_7_13_Luke11_1_4",
+          "bridgeQuestion": "How did Jesus teach us to pray?"
+        },
+        {
+          "to": "OnePet5_7",
+          "bridgeQuestion": "How do we throw our anxieties on him?"
+        }
+      ],
+      "backlinks": [
+        {
+          "from": "Ps46_1_Ps145_18_19",
+          "bridgeQuestion": "Why does he invite prayer?"
+        }
+      ],
+      "tags": [
+        "GOD",
+        "PRAYER",
+        "ask seek knock",
+        "bible",
+        "cast anxiety",
+        "communication",
+        "draw close",
+        "god",
+        "impartial",
+        "jehovah",
+        "model prayer",
+        "name",
+        "personality",
+        "prayer",
+        "worship"
+      ]
+    }
+  ]
+}
