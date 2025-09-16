@@ -1016,24 +1016,26 @@ export default function MinistryCompanion() {
     alert("Data cleared. A backup JSON is in your clipboard.");
   };
 
-  // NEW: Load scripture graph from /public/data/suggestions.json
-  useEffect(() => {
-    let cancelled = false;
-    fetch("/data/suggestions.json")
-      .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
-      .then(raw => {
-        if (cancelled) return;
-        const { scriptureSuggest, topicLibrary } = adaptMinistryGraphToSuggest(raw);
-        setState((s) => ({
-          ...s,
-          scriptureSuggest: mergeScriptureSuggest(s.scriptureSuggest || {}, scriptureSuggest),
-          topicLibrary: mergeTopicLibrary(s.topicLibrary || [], topicLibrary),
-        }));
-      })
-      .catch(err => console.error("Failed to load /data/suggestions.json", err));
-    return () => { cancelled = true; };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+ useEffect(() => {
+  let cancelled = false;
+  const base = (import.meta?.env?.BASE_URL ?? "/");  // will be "/ministry-companion/" on Pages
+  const url = `${base}data/suggestions.json`;
+
+  fetch(url)
+    .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+    .then(raw => {
+      if (cancelled) return;
+      const { scriptureSuggest, topicLibrary } = adaptMinistryGraphToSuggest(raw);
+      setState(s => ({
+        ...s,
+        scriptureSuggest: mergeScriptureSuggest(s.scriptureSuggest || {}, scriptureSuggest),
+        topicLibrary: mergeTopicLibrary(s.topicLibrary || [], topicLibrary),
+      }));
+    })
+    .catch(err => console.error("Failed to load", url, err));
+
+  return () => { cancelled = true; };
+}, []);
 
   const renderPage = () => {
     switch (tab) {
