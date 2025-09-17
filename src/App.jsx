@@ -1019,7 +1019,7 @@ export default function MinistryCompanion() {
   // NEW: Load scripture graph from /public/data/suggestions.json
   useEffect(() => {
     let cancelled = false;
-    fetch("./data/suggestions.json")
+    fetch(import.meta.env.BASE_URL + "data/suggestions.json")
       .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
       .then(raw => {
         if (cancelled) return;
